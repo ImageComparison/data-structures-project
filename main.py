@@ -10,15 +10,15 @@ from PIL import Image
 # SETTINGS
 
 runModes = ['singleIMG', 'imageDIR', 'userInput']
-runMode = "imageDIR"  # userInput is not yet working
+runMode = "userInput"  # userInput is not yet complete
 
-# [runMode:singleIMG] assumed to be in same dir as main.py
+# [runMode:singleIMG] assumed to be in ' single-images ' directory in ' images '
 filename = 'img_10007.jpg'
 
 # [runMode:imageDIR] assumed to be in images dir
 dirname = 'profs-images'
 
-# assumed to be in same dir as main.py
+# assumed to be in ' queryIMGs ' directory
 searchForImage = True
 queryImage = 'img_mystery.jpg'
 
@@ -110,10 +110,10 @@ def convertProjToBinary(projection, threshold):
     returnBinaryArray = []
     length = len(projection)
     for element in range(length):
-        if(projection[element] <= threshold):
-            returnBinaryArray.append(0)
-        else:
+        if(projection[element] > threshold):
             returnBinaryArray.append(1)
+        else:
+            returnBinaryArray.append(0)
     return returnBinaryArray
 if (printBinaryArrays == True):
     print("RAY DATA:")
@@ -254,30 +254,78 @@ def startProgram(runMode, runModes):
                 searchForImage()
 
         elif runMode == "userInput":
-            providedFalseInput = input("Do you want to run the professors files: y/n")
-            while providedFalseInput != "y" or providedFalseInput != "n":
-                providedFalseInput = input("Do you want to run the professors files: y/n")
+            # RUN DEFAULT FILES?
+            providedFilesInputIsValid = False
+            providedFalseInput = input("1) Do you want to run the professors files: y/n")
+            if providedFalseInput == "y" or providedFalseInput == "n":
+                providedFilesInputIsValid = True
+            while providedFilesInputIsValid != True:
+                providedFalseInput = input("1) Do you want to run the professors files: y/n")
+                if providedFalseInput == "y" or providedFalseInput == "n":
+                    providedFilesInputIsValid = True
 
-            print("Do you want to run a.. ")
-            print("1) single image")
-            print("2) or a directory of images")
-            runModeInput = input("")
-            while runModeInput != "1" or runModeInput != "2":
-                print("Do you want to run a.. ")
-                print("1) single image")
-                print("2) or a directory of images")
+            if providedFalseInput == "n":
+                # SINGLE IMAGE OR DIRECTORY ?
+                runModeInputIsValid = False
+                print("\n2) Do you want to run a.. ")
+                print("a) single image")
+                print("b) or a directory of images")
                 runModeInput = input("")
+                if runModeInput == "a" or runModeInput == "b":
+                    runModeInputIsValid = True
+                while runModeInputIsValid != True:
+                    print("2) Do you want to run a.. ")
+                    print("a) single image")
+                    print("b) or a directory of images")
+                    runModeInput = input("")
+                    if runModeInput == "a" or runModeInput == "b":
+                        runModeInputIsValid = True
 
-            print("Is it located in.. ")
-            print("1) the same dir as main.py")
-            print("2) or is it in images dir")
-            targetLocInput = input("")
-            while targetLocInput != "1" or targetLocInput != "2":
-                print("Is it located in.. ")
-                print("1) the same dir as main.py")
-                print("2) or is it in images dir")
-                targetLocInput = input("")
+                # WHAT IS THE FILENAME OF THE TARGET IMAGE ?
+                targetImageFileInputIsValid = False
+                print("\n3) What is the filename of the query image..")
+                targetImageFileInput = input("Note: it should be located in the 'single-images' directory: ")
+                filePath = "images/single-images/" + targetImageFileInput
+                if os.path.isfile(filePath):
+                    targetImageFileInputIsValid = True
+                while targetImageFileInputIsValid != True:
+                    print("3) What is the filename of the query image..")
+                    targetImageFileInput = input("Note: it should be located in the 'single-images' directory: ")
+                    filePath = "images/single-images/" + targetImageFileInput
+                    if os.path.isfile(filePath):
+                        targetImageFileInputIsValid = True
+
+                # DO YOU HAVE A QUERY IMAGE ?
+                queryImageInputIsValid = False
+                queryImageInput = input("\n4) Do you have a query image: y/n")
+                if queryImageInput == "y" or queryImageInput == "n":
+                    queryImageInputIsValid = True
+                while queryImageInputIsValid != True:
+                    queryImageInput = input("4) Do you have a query image: y/n")
+                    if queryImageInput == "y" or queryImageInput == "n":
+                        queryImageInputIsValid = True
+
+                if queryImageInput == "y":
+                    # WHAT IS THE FILENAME OF THE QUERY IMAGE ?
+                    queryImageFileInputIsValid = False
+                    print("\n5) What is the filename of the query image..")
+                    queryImageFileInput = input("Note: it should be located in the 'queryIMGs' directory: ")
+                    filePath = "queryIMGs/" + queryImageFileInput
+                    if os.path.isfile(filePath):
+                        queryImageFileInputIsValid = True
+                    while queryImageFileInputIsValid != True:
+                        print("5) What is the filename of the query image..")
+                        queryImageFileInput = input("Note: it should be located in the 'queryIMGs' directory: ")
+                        filePath = "queryIMGs/" + queryImageFileInput
+                        if os.path.isfile(filePath):
+                            queryImageFileInputIsValid = True
+
+                print("action here")
+            else:
+                dirname = 'profs-images'
+                startProgram("imageDIR", runModes)
     else:
         print("Run mode was set incorrectly!")
+
 
 startProgram(runMode, runModes)
