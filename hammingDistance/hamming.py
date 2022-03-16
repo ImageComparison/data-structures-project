@@ -42,7 +42,7 @@ def toArray(input = []):
         counter += 1
 
 
-# Compare 2 bit strings, find how many bits are different between them
+# Compare 2 bit strings, find how many bits are the same between them
 def hamming(a, b):
     counter = 0
     distance = 0
@@ -53,10 +53,10 @@ def hamming(a, b):
     return distance
 
 
-# Finds how different, many binary strings are from each other
-# As in how many bits are different between the query bit string and the data set of bit strings
-# @returns an array of the hamming distances (distance of bit strings from query) in percentages,
-#          100% means all the bits in the bit string are different
+# Finds how similar many binary strings are to each other
+# As in how many bits are the same between the query bit string and the data set of bit strings
+# @returns an array of the hamming distances (similarities between bit strings from query) in percentages,
+#          100% means all the bits in the bit string are the same
 def hammingSearch(query, dataset):
     hamming_array = []
     total = len(query)
