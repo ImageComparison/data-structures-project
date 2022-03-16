@@ -30,37 +30,44 @@ def readArray():
     returnVal = returnVal.split("\n")
     return returnVal
 
-def hammingSearch(query, data):
-    hammingArray = []
-    queryArray = []
-    dataChars = []
+# Seperation of Concerns
+# To array is a common function that is used in many places
+# It converts iterable objects to arrays
+# e.g. a string to an array of chars
+def toArray(input = []):
+    result = []
+    counter = 0
+    while counter < len(input):
+        result.append(input[counter])
+        counter += 1
+
+
+# Compare 2 bit strings, find how many bits are different between them
+def hamming(a, b):
+    counter = 0
+    distance = 0
+    while counter < len(a):
+        if a[counter] == b[counter]:
+            distance += 1
+        counter += 1
+    return distance
+
+
+# Finds how different, many binary strings are from each other
+# As in how many bits are different between the query bit string and the data set of bit strings
+# @returns an array of the hamming distances (distance of bit strings from query) in percentages,
+#          100% means all the bits in the bit string are different
+def hammingSearch(query, dataset):
+    hamming_array = []
     total = len(query)
 
-    counter = 0
-    while counter < len(query):
-        queryArray.append(query[counter])
-        counter += 1
-    counter = 0
-    while counter < len(data):  # for everyone in set
-        datat = data[counter]
-        dataArray = []
-        intCounter = 0
-        while intCounter < len(datat):  # for every char in element
-            dataArray.append(datat[intCounter])
-            intCounter += 1
-        dataChars.append(dataArray)
-        counter += 1
-    counter = 0
-    while counter < len(data):
-        intCounter = 0
-        score = 0
-        while intCounter < len(query):
-            if data[counter][intCounter] == queryArray[intCounter]:
-                score += 1
-            intCounter += 1
-        hammingArray.append(round(float(score)/float(total), 4)*100)
-        counter += 1
-    return hammingArray
+    i = 0
+    while i < len(dataset):
+        distance = hamming(query, dataset[i])
+        hamming_array.append(round(float(distance) / float(total), 4) * 100)
+        i += 1
+
+    return hamming_array
 
 
 length = 100
