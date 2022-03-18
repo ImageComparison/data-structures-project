@@ -1,6 +1,4 @@
 import os
-
-import cffi
 import PIL
 from PIL import Image
 
@@ -33,58 +31,83 @@ printResultsForEachImage = False
 dataLoadingComplete = False
 scannedImages, scannedImagesBinary = [], []
 queryImageBinary, data, projectionData0, projectionData45, projectionData90, projectionData135, Th_P1, Th_P2, Th_P3, Th_P4, binaryProjData0, binaryProjData45, binaryProjData90, binaryProjData135 = "", "", "", "", "", "", "", "", "", "", "", "", "", ""
+
 if (printRawImageArrays == True):
     # prints raw image data in array
     for row in range(28):
         print(f"[{row+1}/28]", data[row])
+
+
+def project_0deg(data = []):
+    returnData = []
+    for row in range(28):
+        rowSumData = 0
+        for cell in range(28):
+            rowSumData += data[row][cell]
+        returnData.append(rowSumData)
+    return returnData
+
+
+def project_45deg(data = []):
+    returnData = []
+    k = 0
+    raySumData = 0
+    rot_data = list(reversed(list(zip(*data))))
+    while (k <= 28 + 28 - 2):
+        j = 0
+        while (j <= k):
+            i = k - j
+            if (i < 28 and j < 28):
+                raySumData += rot_data[i][j]
+            j += 1
+        returnData.append(raySumData)
+        k += 1
+    return returnData
+
+
+def project_90deg(data = []):
+    returnData = []
+    for col in range(28):
+        colSumData = 0
+        for cell in range(28):
+            colSumData += data[cell][col]
+        returnData.append(colSumData)
+    return returnData
+
+
+def project_135deg(data = []):
+    returnData = []
+    k = 0
+    raySumData = 0
+    while (k <= 28 + 28 - 2):
+        j = 0
+        while (j <= k):
+            i = k - j
+            if (i < 28 and j < 28):
+                raySumData += data[i][j]
+            j += 1
+        returnData.append(raySumData)
+        k += 1
+    return returnData
+
+
+# Project and array in angles 0, 45, 90, 135
 def project(angle):
     global data
-    if (angle == 0 or angle == 45 or angle == 90 or angle == 135):
-        returnData = []
-        if(angle == 0):
-            for row in range(28):
-                rowSumData = 0
-                for cell in range(28):
-                    rowSumData += data[row][cell]
-                returnData.append(rowSumData)
-            return returnData
-        elif(angle == 45):
-            k = 0
-            raySumData = 0
-            rot_data = list(reversed(list(zip(*data))))
-            while (k <= 28 + 28 - 2):
-                j = 0
-                while (j <= k):
-                    i = k - j
-                    if (i < 28 and j < 28):
-                        raySumData += rot_data[i][j]
-                    j += 1
-                returnData.append(raySumData)
-                k += 1
-            return returnData
-        elif(angle == 90):
-            for col in range(28):
-                colSumData = 0
-                for cell in range(28):
-                    colSumData += data[cell][col]
-                returnData.append(colSumData)
-            return returnData
-        elif(angle == 135):
-            k = 0
-            raySumData = 0
-            while (k <= 28 + 28 - 2):
-                j = 0
-                while (j <= k):
-                    i = k - j
-                    if (i < 28 and j < 28):
-                        raySumData += data[i][j]
-                    j += 1
-                returnData.append(raySumData)
-                k += 1
-            return returnData
-    else:
-        print("Angle was most likely entered incorrectly!")
-        return None
+    match angle:
+        case 0:
+            return project_0deg(data)
+        case 45:
+            return project_45deg(data)
+        case 90:
+            return project_90deg(data)
+        case 135:
+            return project_135deg(data)
+        case _:
+            print("Angle was most likely entered incorrectly!")
+            return None
+
+
 if (printImageRayArrays == True):
     print("RAY DATA:")
     print("<0 DEG>", projectionData0)
@@ -92,6 +115,8 @@ if (printImageRayArrays == True):
     print("<90 DEG>", projectionData90)
     print("<135 DEG>", projectionData135)
     print("")
+
+
 def findProjThreshold(projection):
     sum = 0
     length = len(projection)
@@ -99,6 +124,8 @@ def findProjThreshold(projection):
         sum += projection[element]
     threshold = sum/length
     return threshold
+
+
 if (printThresholdValues == True):
     print("THRESHOLDS:")
     print("<0 DEG THRESHOLD>", Th_P1)
@@ -106,6 +133,7 @@ if (printThresholdValues == True):
     print("<90 DEG THRESHOLD>", Th_P3)
     print("<135 DEG THRESHOLD>", Th_P4)
     print("")
+
 def convertProjToBinary(projection, threshold):
     returnBinaryArray = []
     length = len(projection)
@@ -115,6 +143,8 @@ def convertProjToBinary(projection, threshold):
         else:
             returnBinaryArray.append(0)
     return returnBinaryArray
+
+
 if (printBinaryArrays == True):
     print("RAY DATA:")
     print("<0 DEG BINARY>", binaryProjData0)
@@ -122,6 +152,8 @@ if (printBinaryArrays == True):
     print("<90 DEG BINARY>", binaryProjData90)
     print("<135 DEG BINARY>", binaryProjData135)
     print("")
+
+
 def analyzeImage(filename):
     global queryImageBinary, dataLoadingComplete, scannedImagesBinary, runMode, data, projectionData0, projectionData45, projectionData90, projectionData135, Th_P1, Th_P2, Th_P3, Th_P4, binaryProjData0, binaryProjData45, binaryProjData90, binaryProjData135
     # RUN PROGRAM ON A SINGULAR IMAGE FILE

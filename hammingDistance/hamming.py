@@ -1,30 +1,30 @@
 from random import randint
+import os
 
+# Based off of the example at: https://stackoverflow.com/a/5137509
+# It ensures no matter what the CWD (current working directory) is, files intended will be found.
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
-def genRandBinary(length):
+def generate_random_bitstring(length):
     counter = 0
     string = ""
     while counter < length:
-        rng = randint(0, 10)
-        if rng <= 5:
-            randNum = "0"
-        else:
-            randNum = "1"
-        string = string + randNum
+        # A round about way of generating a random bit string
+        string += str(round(randint(0, 10) / 10))
         counter += 1
     return string
 
-def fillAndSaveArray(num, length):
+def write_bitstring_to_file(num, length):
     counter = 1
-    f = open("data", "a")
-    f.write(genRandBinary(length))
+    f = open(os.path.join(dir_path, 'data'), "a")
+    f.write(generate_random_bitstring(length))
     while counter < num:
-        f.write(f"\n{genRandBinary(length)}")
+        f.write(f"\n{generate_random_bitstring(length)}")
         counter += 1
     f.close()
 
 def readArray():
-    f = open("data", "r")
+    f = open(os.path.join(dir_path, 'data'), "r")
     returnVal = f.read()
     f.close()
     returnVal = returnVal.split("\n")
@@ -71,8 +71,8 @@ def hammingSearch(query, dataset):
 
 
 length = 100
-# fillAndSaveArray(10,length) # populate new data (rewrites file)
+# write_bitstring_to_file(10,length) # populate new data (rewrites file)
 dataArray = readArray()
 len(dataArray)
-queryString = genRandBinary(length)
+queryString = generate_random_bitstring(length)
 print(hammingSearch(queryString, dataArray))
