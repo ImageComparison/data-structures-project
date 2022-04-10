@@ -17,9 +17,9 @@
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
       <RootProperty Name="Children" />
-      <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="Padding" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="Margin" />
       <RootMethod Name="GetColumn" />
       <RootMethod Name="SetColumn" />
@@ -64,7 +64,6 @@
       <RootProperty Name="IsBackButtonVisible" />
       <RootProperty Name="IsSettingsVisible" />
       <RootProperty Name="MenuItems" />
-      <RootProperty Name="PaneFooter" />
       <RootProperty Name="Content" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />
@@ -79,21 +78,17 @@
       <RootProperty Name="Icon" />
       <RootProperty Name="Content" />
       <RootProperty Name="Tag" />
+      <RootProperty Name="MenuItems" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
-      <RootProperty Name="Width" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Button">
-      <RootProperty Name="Margin" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Style" />
-      <RootProperty Name="Content" />
-      <RootProperty Name="Foreground" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootEvent Name="Click" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ToolTipService">
+      <RootMethod Name="GetToolTip" />
+      <RootMethod Name="SetToolTip" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Frame">
       <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
+      <RootProperty Name="Width" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
       <RootProperty Name="Margin" />
@@ -130,7 +125,16 @@
       <RootProperty Name="Message" />
       <RootProperty Name="ActionButton" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Button">
+      <RootProperty Name="Content" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Name" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Style" />
+      <RootEvent Name="Click" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Image">
+      <RootProperty Name="Name" />
       <RootProperty Name="Source" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />

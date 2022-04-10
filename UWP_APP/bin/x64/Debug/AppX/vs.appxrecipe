@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-06T19:25:17.865</Modified>
+      <Modified>2022-04-10T07:36:52.408</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\UWP_APP.exe">
       <PackagePath>entrypoint\UWP_APP.exe</PackagePath>
-      <Modified>2022-04-06T19:25:13.145</Modified>
+      <Modified>2022-04-10T07:36:49.850</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.13\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -48,53 +48,53 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2022-04-02T02:07:15.714</Modified>
+      <Modified>2022-04-10T07:18:48.878</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2022-04-02T02:07:15.683</Modified>
+      <Modified>2022-04-10T07:18:48.865</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-06T19:03:52.633</Modified>
+      <Modified>2022-04-10T07:19:30.586</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-06T19:03:45.845</Modified>
+      <Modified>2022-04-10T07:19:26.313</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-06T19:03:50.732</Modified>
+      <Modified>2022-04-10T07:19:23.064</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-06T19:03:51.254</Modified>
+      <Modified>2022-04-10T07:19:16.163</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-02T02:07:15.698</Modified>
+      <Modified>2022-04-10T07:18:48.866</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-06T19:03:46.722</Modified>
+      <Modified>2022-04-10T07:19:13.308</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\UWP_APP.xr.xml">
       <PackagePath>UWP_APP.xr.xml</PackagePath>
-      <Modified>2022-04-06T19:05:59.004</Modified>
+      <Modified>2022-04-10T07:36:49.508</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-04-06T19:25:12.720</Modified>
+      <Modified>2022-04-10T07:36:49.538</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2022-04-06T19:25:12.718</Modified>
+      <Modified>2022-04-10T07:36:49.537</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\X64\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -110,11 +110,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-04-06T19:06:02.032</Modified>
+      <Modified>2022-04-10T07:24:41.526</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\Core\UWP_APP.exe">
       <PackagePath>UWP_APP.exe</PackagePath>
-      <Modified>2022-04-06T19:25:17.767</Modified>
+      <Modified>2022-04-10T07:36:52.398</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

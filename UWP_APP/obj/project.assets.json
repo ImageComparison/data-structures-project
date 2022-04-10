@@ -230,18 +230,6 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "NumSharp/0.30.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.4"
-        },
-        "compile": {
-          "lib/netstandard2.0/NumSharp.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/NumSharp.dll": {}
-        }
-      },
       "runtime.win10-arm.Microsoft.Net.Native.Compiler/2.2.11-rel-30601-02": {
         "type": "package",
         "dependencies": {
@@ -329,27 +317,6 @@
         "build": {
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.props": {},
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
-        }
-      },
-      "System.Memory/4.5.4": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/4.5.3": {
-        "type": "package",
-        "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
       }
     },
@@ -581,18 +548,6 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
-        }
-      },
-      "NumSharp/0.30.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.4"
-        },
-        "compile": {
-          "lib/netstandard2.0/NumSharp.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/NumSharp.dll": {}
         }
       },
       "runtime.win10-arm.Microsoft.Net.Native.Compiler/2.2.11-rel-30601-02": {
@@ -861,27 +816,6 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.props": {},
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
-      },
-      "System.Memory/4.5.4": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/4.5.3": {
-        "type": "package",
-        "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0.17763/win10-arm-aot": {
@@ -1112,18 +1046,6 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
-        }
-      },
-      "NumSharp/0.30.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.4"
-        },
-        "compile": {
-          "lib/netstandard2.0/NumSharp.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/NumSharp.dll": {}
         }
       },
       "runtime.win10-arm-aot.Microsoft.NETCore.UniversalWindowsPlatform/6.2.13": {
@@ -1393,27 +1315,6 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.props": {},
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
-      },
-      "System.Memory/4.5.4": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/4.5.3": {
-        "type": "package",
-        "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0.17763/win10-arm64-aot": {
@@ -1644,18 +1545,6 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
-        }
-      },
-      "NumSharp/0.30.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.4"
-        },
-        "compile": {
-          "lib/netstandard2.0/NumSharp.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/NumSharp.dll": {}
         }
       },
       "runtime.win10-arm.Microsoft.Net.Native.Compiler/2.2.11-rel-30601-02": {
@@ -1925,27 +1814,6 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.props": {},
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
-      },
-      "System.Memory/4.5.4": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/4.5.3": {
-        "type": "package",
-        "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0.17763/win10-x64": {
@@ -2176,18 +2044,6 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
-        }
-      },
-      "NumSharp/0.30.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.4"
-        },
-        "compile": {
-          "lib/netstandard2.0/NumSharp.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/NumSharp.dll": {}
         }
       },
       "runtime.win10-arm.Microsoft.Net.Native.Compiler/2.2.11-rel-30601-02": {
@@ -2456,27 +2312,6 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.props": {},
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
-      },
-      "System.Memory/4.5.4": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/4.5.3": {
-        "type": "package",
-        "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0.17763/win10-x64-aot": {
@@ -2707,18 +2542,6 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
-        }
-      },
-      "NumSharp/0.30.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.4"
-        },
-        "compile": {
-          "lib/netstandard2.0/NumSharp.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/NumSharp.dll": {}
         }
       },
       "runtime.win10-arm.Microsoft.Net.Native.Compiler/2.2.11-rel-30601-02": {
@@ -2988,27 +2811,6 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.props": {},
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
-      },
-      "System.Memory/4.5.4": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/4.5.3": {
-        "type": "package",
-        "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0.17763/win10-x86": {
@@ -3239,18 +3041,6 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
-        }
-      },
-      "NumSharp/0.30.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.4"
-        },
-        "compile": {
-          "lib/netstandard2.0/NumSharp.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/NumSharp.dll": {}
         }
       },
       "runtime.win10-arm.Microsoft.Net.Native.Compiler/2.2.11-rel-30601-02": {
@@ -3519,27 +3309,6 @@
         "native": {
           "runtimes/win10-x86/nativeassets/uap10.0.15138/clrcompression.dll": {}
         }
-      },
-      "System.Memory/4.5.4": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/4.5.3": {
-        "type": "package",
-        "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0.17763/win10-x86-aot": {
@@ -3770,18 +3539,6 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
-        }
-      },
-      "NumSharp/0.30.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.4"
-        },
-        "compile": {
-          "lib/netstandard2.0/NumSharp.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/NumSharp.dll": {}
         }
       },
       "runtime.win10-arm.Microsoft.Net.Native.Compiler/2.2.11-rel-30601-02": {
@@ -4050,27 +3807,6 @@
         "build": {
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.props": {},
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
-        }
-      },
-      "System.Memory/4.5.4": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Memory.dll": {}
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/4.5.3": {
-        "type": "package",
-        "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
       }
     }
@@ -4615,20 +4351,6 @@
         "lib/netstandard1.0/_._",
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
-      ]
-    },
-    "NumSharp/0.30.0": {
-      "sha512": "1f8m2B/m/ZSsICaqLszspCyA9/sTHK7wBKEH5KsxGg/r3QCYTc2HnfYOGMeCytvo8/j0v/umn5umLOLhdExlFA==",
-      "type": "package",
-      "path": "numsharp/0.30.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "lib/netstandard2.0/NumSharp.dll",
-        "lib/netstandard2.0/NumSharp.pdb",
-        "numsharp.0.30.0.nupkg.sha512",
-        "numsharp.nuspec"
       ]
     },
     "runtime.win10-arm-aot.Microsoft.NETCore.UniversalWindowsPlatform/6.2.13": {
@@ -8556,65 +8278,12 @@
         "runtimes/win10-x86/lib/uap10.0.15138/netstandard.dll",
         "runtimes/win10-x86/nativeassets/uap10.0.15138/clrcompression.dll"
       ]
-    },
-    "System.Memory/4.5.4": {
-      "sha512": "1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
-      "type": "package",
-      "path": "system.memory/4.5.4",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/System.Memory.dll",
-        "lib/net461/System.Memory.xml",
-        "lib/netcoreapp2.1/_._",
-        "lib/netstandard1.1/System.Memory.dll",
-        "lib/netstandard1.1/System.Memory.xml",
-        "lib/netstandard2.0/System.Memory.dll",
-        "lib/netstandard2.0/System.Memory.xml",
-        "ref/netcoreapp2.1/_._",
-        "system.memory.4.5.4.nupkg.sha512",
-        "system.memory.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
-      ]
-    },
-    "System.Runtime.CompilerServices.Unsafe/4.5.3": {
-      "sha512": "3TIsJhD1EiiT0w2CcDMN/iSSwnNnsrnbzeVHSKkaEgV85txMprmuO+Yq2AdSbeVGcg28pdNDTPK87tJhX7VFHw==",
-      "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/4.5.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
-        "ref/net461/System.Runtime.CompilerServices.Unsafe.xml",
-        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.4.5.3.nupkg.sha512",
-        "system.runtime.compilerservices.unsafe.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
-      ]
     }
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.17763": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.2.13",
-      "Microsoft.UI.Xaml >= 2.7.1",
-      "NumSharp >= 0.30.0"
+      "Microsoft.UI.Xaml >= 2.7.1"
     ]
   },
   "packageFolders": {
@@ -8664,10 +8333,6 @@
           "Microsoft.UI.Xaml": {
             "target": "Package",
             "version": "[2.7.1, )"
-          },
-          "NumSharp": {
-            "target": "Package",
-            "version": "[0.30.0, )"
           }
         },
         "imports": [

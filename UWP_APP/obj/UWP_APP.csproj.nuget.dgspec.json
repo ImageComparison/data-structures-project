@@ -46,10 +46,6 @@
             "Microsoft.UI.Xaml": {
               "target": "Package",
               "version": "[2.7.1, )"
-            },
-            "NumSharp": {
-              "target": "Package",
-              "version": "[0.30.0, )"
             }
           },
           "imports": [

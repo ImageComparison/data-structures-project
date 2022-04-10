@@ -81,7 +81,8 @@
                     <Button 
                         Name="AddButton"
                         Click="AddButton_Click"
-                        Margin="5, 0, 5, 0"
+                        ToolTipService.ToolTip="Add Files"
+                        Margin="5, 0, 5, 5"
                         HorizontalAlignment="Stretch"
                         Grid.Row="0"
                         Style="{ThemeResource AccentButtonStyle}">Add Files</Button>
@@ -89,14 +90,16 @@
                     <Button 
                         Name="AddFolderButton"
                         Click="AddFolderButton_Click"
-                        Margin="5, 0, 5, 0"
+                        ToolTipService.ToolTip="Add Folder"
+                        Margin="5, 0, 5, 5"
                         HorizontalAlignment="Stretch"
                         Grid.Row="1"
                         Style="{ThemeResource AccentButtonStyle}">Add Folder</Button>
-                    
+
                     <Button 
                         Name="RemoveButton"
                         Click="RemoveButton_Click"
+                        ToolTipService.ToolTip="Remove"
                         Margin="5, 0, 5, 0"
                         HorizontalAlignment="Stretch" 
                         Grid.Row="2">Remove</Button>
@@ -155,12 +158,12 @@
                                         VerticalAlignment="Center" 
                                         Orientation="Horizontal" 
                                         MaximumRowsOrColumns="2" 
-                                        Margin="36, 0, 0, 36">
+                                        Margin="0, 0, 0, 36">
 
                                         <StackPanel 
-                                            Padding="0, 0, 36, 0"
+                                            Padding="18, 0, 18, 0"
                                             Orientation="Vertical" 
-                                            HorizontalAlignment="Left"
+                                            HorizontalAlignment="Center"
                                             VerticalAlignment="Stretch">
 
                                             <Border
@@ -186,7 +189,7 @@
                                         </StackPanel>
 
                                         <StackPanel 
-                                            Padding="36, 0, 0, 0"
+                                            Padding="18, 0, 18, 0"
                                             Orientation="Vertical" 
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Stretch">
