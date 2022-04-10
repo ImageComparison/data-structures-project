@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -35,6 +36,8 @@ namespace UWP_APP
     public sealed partial class MainPage : Page
     {
         private string query_directory = "";
+        private string[] ref_directories = { };
+        private string[] ref_names = { };
         private byte[] query_raw_data;
 
         public MainPage()
@@ -155,10 +158,12 @@ namespace UWP_APP
                 uint image_height = properties.Height;
 
                 query_directory = file.Path; //save file path
+                WriteableBitmap bitmap = new WriteableBitmap(64, 64); //create WriteableBitmap with correct pix sizes
 
                 using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read)) //get byte array from WriteableBitmap
                 {
                     BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                    bitmap.SetSource(stream);
 
                     //Scale image
                     BitmapTransform transform = new BitmapTransform()
@@ -175,8 +180,84 @@ namespace UWP_APP
                         ColorManagementMode.DoNotColorManage
                     );
 
-                    query_raw_data = pixeldata.DetachPixelData();
+                    query_raw_data = pixeldata.DetachPixelData(); //get raw img data
                     Console.WriteLine();
+                }
+
+                img_query.Source = bitmap; //Update query image display on ui
+            }
+        }
+
+        private async void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+            picker.FileTypeFilter.Add(".jpg");
+            picker.FileTypeFilter.Add(".jpeg");
+            picker.FileTypeFilter.Add(".png");
+
+            var files = await picker.PickMultipleFilesAsync();
+            if (files.Count > 0)
+            {
+                foreach (Windows.Storage.StorageFile file in files)
+                {
+                    ref_directories.Append(file.Path); //add file directories to array
+                    ref_names.Append(file.Name); //add file names to array
+
+                    //TODO: Update list on side to include new items
+                }
+            }
+        }
+
+        private async void AddFolderButton_Click(object sender, RoutedEventArgs e)
+        {
+            var folderPicker = new Windows.Storage.Pickers.FolderPicker();
+            folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+            folderPicker.FileTypeFilter.Add("*");
+
+            Windows.Storage.StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                ref_directories.Append(folder.Path);
+                ref_names.Append(folder.Name);
+
+                //TODO: Update list on side to include new folder
+
+                /*
+                Windows.Storage.AccessCache.StorageApplicationPermissions.
+                FutureAccessList.AddOrReplace("PickedFolderToken", folder);
+                */
+            }
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Remove items from list and from ref_directories and ref_names
+        }
+
+        private void CompareButton_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: START PYTHON CODE
+            run_cmd("C:/Users/johnh/AppData/Local/Programs/Python/Python39/python.exe", "../pythonScripts/main.py");
+        }
+
+        private string run_cmd(string cmd, string args)
+        {
+            ProcessStartInfo start_info = new ProcessStartInfo();
+            start_info.FileName = cmd; //python directory
+            start_info.Arguments = args; //script directory
+            start_info.CreateNoWindow = true;
+            start_info.UseShellExecute = false;
+            start_info.RedirectStandardOutput = true;
+
+            using (Process process = Process.Start(start_info))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd();
+                    Console.Write(result);
+                    return result;
                 }
             }
         }

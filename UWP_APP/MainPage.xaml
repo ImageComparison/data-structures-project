@@ -34,7 +34,7 @@
                 Height="40"
                 Canvas.ZIndex="1" 
                 Margin="48,8,0,0">
-            
+
             <StackPanel Orientation="Horizontal">
                 <Image x:Name="AppFontIcon"
                     HorizontalAlignment="Left" 
@@ -69,24 +69,37 @@
                 <muxc:NavigationViewItem Icon="Target" Content="Image 4"/>
                 <muxc:NavigationViewItem Icon="Target" Content="Image 5"/>
             </muxc:NavigationView.MenuItems>
-            
+
             <muxc:NavigationView.PaneFooter>
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
                     <Button 
+                        Name="AddButton"
+                        Click="AddButton_Click"
                         Margin="5, 0, 5, 0"
                         HorizontalAlignment="Stretch"
-                        Grid.Column="0"
-                        Style="{ThemeResource AccentButtonStyle}">Add</Button>
+                        Grid.Row="0"
+                        Style="{ThemeResource AccentButtonStyle}">Add Files</Button>
 
                     <Button 
+                        Name="AddFolderButton"
+                        Click="AddFolderButton_Click"
+                        Margin="5, 0, 5, 0"
+                        HorizontalAlignment="Stretch"
+                        Grid.Row="1"
+                        Style="{ThemeResource AccentButtonStyle}">Add Folder</Button>
+                    
+                    <Button 
+                        Name="RemoveButton"
+                        Click="RemoveButton_Click"
                         Margin="5, 0, 5, 0"
                         HorizontalAlignment="Stretch" 
-                        Grid.Column="1">Remove</Button>
+                        Grid.Row="2">Remove</Button>
                 </Grid>
             </muxc:NavigationView.PaneFooter>
 
@@ -113,7 +126,7 @@
                                     Padding="16" 
                                     HorizontalAlignment="Stretch" 
                                     VerticalAlignment="Stretch">
-                                    
+
                                     <Grid Margin="0, 0, 0, 32">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -128,6 +141,8 @@
                                         </TextBlock>
 
                                         <Button 
+                                            Name="CompareButton"
+                                            Click="CompareButton_Click"
                                             Grid.Column="1" 
                                             VerticalAlignment="Center"
                                             Style="{ThemeResource AccentButtonStyle}">
@@ -157,6 +172,7 @@
                                                 BorderThickness="1"
                                                 BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
                                                 <Image 
+                                                    Name="img_ref"
                                                     Source="/Assets/LockScreenLogo.scale-200.png"  
                                                     HorizontalAlignment="Stretch" 
                                                     VerticalAlignment="Stretch"  
@@ -174,7 +190,7 @@
                                             Orientation="Vertical" 
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Stretch">
-                                            
+
                                             <Border
                                                 Height="200" 
                                                 Background="{ThemeResource LayerFillColorDefaultBrush}"
@@ -184,12 +200,13 @@
                                                 BorderThickness="1"
                                                 BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
                                                 <Image 
+                                                    Name="img_query"
                                                     Source="/Assets/LockScreenLogo.scale-200.png"  
                                                     HorizontalAlignment="Stretch" 
                                                     VerticalAlignment="Stretch"  
                                                 />
                                             </Border>
-                                            
+
                                             <TextBlock 
                                                 Margin="16" 
                                                 Style="{ThemeResource BodyTextBlockStyle}" 
@@ -199,7 +216,7 @@
 
                                     <TextBlock Margin="0,0,0,32" Style="{ThemeResource SubtitleTextBlockStyle}">Usage</TextBlock>
                                     <TextBlock Margin="0,0,0,32" Style="{ThemeResource BodyTextBlockStyle}">This program compares to images to determine if both images match. It does this via projection mapping and ... You can choose the query image to use for this comparison</TextBlock>
-                                    
+
                                     <muxc:InfoBar
                                         IsOpen="True"    
                                         IsClosable="False"
@@ -220,7 +237,7 @@
                             VerticalAlignment="Stretch" 
                             Orientation="Vertical">
                             <TextBlock Padding="16, 8, 0, 0" Style="{ThemeResource SubtitleTextBlockStyle}">Result</TextBlock>
-                            
+
                             <muxc:NavigationView 
                                 x:Name="nvSample"
                                 HorizontalAlignment="Stretch" 
@@ -230,7 +247,7 @@
                                 IsPaneToggleButtonVisible="False"
                                 PaneDisplayMode="Left"
                                 IsSettingsVisible="False">
-                                <muxc:NavigationView.MenuItems>                                    
+                                <muxc:NavigationView.MenuItems>
                                     <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
                                     <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
                                     <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
