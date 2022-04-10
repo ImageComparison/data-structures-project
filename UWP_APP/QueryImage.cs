@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NumSharp;
+//using NumSharp;
 
 namespace UWP_APP
 {
@@ -44,7 +44,7 @@ namespace UWP_APP
             return distance;
         }
 
-        private static int[] Project_0DEG(int[][] data)
+        private static int[] Project_0DEG(byte[][] data)
         {
             int[] result = { };
             foreach (var row in Enumerable.Range(0, 28)) {
@@ -58,7 +58,7 @@ namespace UWP_APP
             return result;
         }
 
-        private static int[] Project_45DEG(int[][] data)
+        private static int[] Project_45DEG(byte[][] data)
         {
             int[] result = { };
             foreach (var col in Enumerable.Range(0, 28))
@@ -73,7 +73,7 @@ namespace UWP_APP
             return result;
         }
 
-        private static int[] Project_90DEG(int[][] data)
+        private static int[] Project_90DEG(byte[][] data)
         {
             int[] result = { };
             foreach (var col in Enumerable.Range(0, 28))
@@ -86,6 +86,28 @@ namespace UWP_APP
             }
 
             return result;
+        }
+
+        public static byte[] Generate_Barcode(byte[] raw, int width, int height)
+        {
+            byte[][] formatted_data = new byte[height][];
+            for (int i = 0; i < raw.Length; i+=width*4) //for each row
+            {
+                byte[] temp = {};
+                for (int j = i; j < i + width*4; j++) //for each column in current row
+                {
+                    temp.Append(raw[j]);
+                }
+                formatted_data[i] = temp; //add row
+            }
+
+            //getproj0
+            //getproj45
+            //getproj90
+            //getproj135
+
+
+            return null;
         }
 
         QueryImage() {

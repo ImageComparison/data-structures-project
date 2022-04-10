@@ -39,6 +39,8 @@ namespace UWP_APP
         private string[] ref_directories = { };
         private string[] ref_names = { };
         private byte[] query_raw_data;
+        private int query_height;
+        private int query_width;
 
         public MainPage()
         {
@@ -156,6 +158,8 @@ namespace UWP_APP
                 ImageProperties properties = await file.Properties.GetImagePropertiesAsync(); //get image height and width
                 uint image_width = properties.Width;
                 uint image_height = properties.Height;
+                query_width = (int)image_width;
+                query_height = (int)image_height;
 
                 query_directory = file.Path; //save file path
                 WriteableBitmap bitmap = new WriteableBitmap(64, 64); //create WriteableBitmap with correct pix sizes
@@ -206,6 +210,8 @@ namespace UWP_APP
                     ref_names.Append(file.Name); //add file names to array
 
                     //TODO: Update list on side to include new items
+                    //NavigationViewControl.MenuItems.Add();
+                    //NavigationViewControl.MenuItems.RemoveAt();
                 }
             }
         }
@@ -239,27 +245,7 @@ namespace UWP_APP
         private void CompareButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO: START PYTHON CODE
-            run_cmd("C:/Users/johnh/AppData/Local/Programs/Python/Python39/python.exe", "../pythonScripts/main.py");
-        }
-
-        private string run_cmd(string cmd, string args)
-        {
-            ProcessStartInfo start_info = new ProcessStartInfo();
-            start_info.FileName = cmd; //python directory
-            start_info.Arguments = args; //script directory
-            start_info.CreateNoWindow = true;
-            start_info.UseShellExecute = false;
-            start_info.RedirectStandardOutput = true;
-
-            using (Process process = Process.Start(start_info))
-            {
-                using (StreamReader reader = process.StandardOutput)
-                {
-                    string result = reader.ReadToEnd();
-                    Console.Write(result);
-                    return result;
-                }
-            }
+            QueryImage.Generate_Barcode(query_raw_data, query_width, query_height);
         }
     }
 }
