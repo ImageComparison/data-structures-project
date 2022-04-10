@@ -176,7 +176,7 @@
                                                 BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
                                                 <Image 
                                                     Name="img_ref"
-                                                    Source="/Assets/LockScreenLogo.scale-200.png"  
+                                                    Source="/Assets/SplashScreen.scale-200.png"  
                                                     HorizontalAlignment="Stretch" 
                                                     VerticalAlignment="Stretch"  
                                                 />
@@ -204,7 +204,7 @@
                                                 BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
                                                 <Image 
                                                     Name="img_query"
-                                                    Source="/Assets/LockScreenLogo.scale-200.png"  
+                                                    Source="/Assets/SplashScreen.scale-200.png"  
                                                     HorizontalAlignment="Stretch" 
                                                     VerticalAlignment="Stretch"  
                                                 />
