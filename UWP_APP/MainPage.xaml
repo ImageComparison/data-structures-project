@@ -55,7 +55,7 @@
             OpenPaneLength="285"
             x:Name="NavigationViewControl"
             IsTitleBarAutoPaddingEnabled="False"            
-            IsBackButtonVisible="Visible" 
+            IsBackButtonVisible="Collapsed" 
             DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
             IsSettingsVisible="False"
             Canvas.ZIndex="0">
