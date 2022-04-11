@@ -94,9 +94,10 @@ namespace UWP_APP
             for (int i = 0; i < raw.Length; i+=width*4) //for each row
             {
                 byte[] temp = {};
-                for (int j = i; j < i + width*4; j++) //for each column in current row
+                for (int j = i; j < i + width*4; j+=4) //for each column in current row
                 {
-                    temp.Append(raw[j]);
+                    byte new_pixel = (byte)(raw[j] * 0.11 + raw[j + 1] * 0.59 + raw[j + 2] * 0.3); //make pixel grayscale
+                    temp.Append(new_pixel); //add pixel to row
                 }
                 formatted_data[i] = temp; //add row
             }
