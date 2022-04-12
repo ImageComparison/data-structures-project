@@ -28,13 +28,13 @@ namespace UWP_APP
         //}
 
         // Compare 2 bit strings, find how many bits are the same between them
-        public static int HammingDistance(String a, String b) {
+        public static int HammingDistance(String a, String b) { // O(n)
             var length = a.Length;
             if (length != b.Length)
                 return -1;
 
             var distance = 0;
-            for (int i = 0; i < length; i++) {
+            for (int i = 0; i < length; i++) { // O(n)
                 if (a[i] == b[i])
                     distance++;
             }
@@ -42,12 +42,12 @@ namespace UWP_APP
             return distance;
         }
 
-        private static int[] Project_0DEG(List<List<byte>> data)
+        private static int[] Project_0DEG(List<List<byte>> data) // O(n^2)
         {
             int[] result = { };
-            foreach (var row in Enumerable.Range(0, 28)) {
+            foreach (var row in Enumerable.Range(0, 28)) { // O(n)
                 int rowSumData = 0;
-                foreach (var cell in Enumerable.Range(0, 28)) 
+                foreach (var cell in Enumerable.Range(0, 28)) // O(n)
                     rowSumData += data[row][cell];
 
                 result.Append(rowSumData);
@@ -56,7 +56,7 @@ namespace UWP_APP
             return result;
         }
 
-        private static int[] Project_45DEG(List<List<byte>> data)
+        private static int[] Project_45DEG(List<List<byte>> data) // O(n^2)
         {
             int[] result = { };
             foreach (var col in Enumerable.Range(0, 28))
@@ -71,7 +71,7 @@ namespace UWP_APP
             return result;
         }
 
-        private static int[] Project_90DEG(List<List<byte>> data)
+        private static int[] Project_90DEG(List<List<byte>> data) // O(n^2)
         {
             int[] result = { };
             foreach (var col in Enumerable.Range(0, 28))
@@ -86,15 +86,43 @@ namespace UWP_APP
             return result;
         }
 
-        public static int[] Generate_Barcode(byte[] raw, int width, int height)
+        private static int[] Project_135DEG(List<List<byte>> data) // O(n^2)
+        {
+            // var rot_data = data
+                // .SelectMany(inner => inner.Select((item, index) => new { item, index }))
+                // .GroupBy(i => i.index, i => i.item)
+                // .Select(g => g.ToList())
+                // .ToList();
+            
+            // ROT_DATA IS INCORRECT, IT WILL YEILD THE SAME RESULTS AS 45 DEG
+            // BECAUSE THE MATRIX IS BEING ROTATED 180 DEGREES AND NOT 90 DEGREES
+            
+            
+            
+            int[] result = { };
+            foreach (var col in Enumerable.Range(0, 28))
+            {
+                int colSumData = 0;
+                foreach (var cell in Enumerable.Range(0, 28))
+                    // colSumData += rot_data[cell][col]; // uncomment when working
+                    colSumData += data[cell][col]; // delete when working
+
+
+                result.Append(colSumData);
+            }
+
+            return result;
+        }
+        
+        public static int[] Generate_Barcode(byte[] raw, int width, int height) // O(n^2)
         {
             List<List<byte>> formatted_data = new List<List<byte>>();
             // byte[][] formatted_data = new byte[height][]; // ** replaced with line above **
-            for (int i = 0; i < raw.Length; i+=width*4) //for each row
+            for (int i = 0; i < raw.Length; i+=width*4) //for each row // O(n)
             {
                 List<byte> temp = new List<byte>();
                 // byte[] temp = {}; // ** replaced with line above **
-                for (int j = i; j < i + width*4; j+=4) //for each column in current row
+                for (int j = i; j < i + width*4; j+=4) //for each column in current row // O(n)
                 {
                     byte new_pixel = (byte)(raw[j] * 0.11 + raw[j + 1] * 0.59 + raw[j + 2] * 0.3); //make pixel grayscale
                     temp.Add(new_pixel); //add pixel to row
