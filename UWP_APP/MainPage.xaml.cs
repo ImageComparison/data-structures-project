@@ -47,6 +47,7 @@ namespace UWP_APP
             this.InitializeComponent();
             
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            
 
             titleBar.ButtonBackgroundColor = Colors.Transparent;
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;

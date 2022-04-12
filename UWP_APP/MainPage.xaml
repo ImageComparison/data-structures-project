@@ -44,7 +44,7 @@
                     Height="16"/>
 
                 <TextBlock x:Name="AppTitle"
-                    Text="Test App Title"
+                    Text="Image Compare"
                     VerticalAlignment="Center"
                     Margin="12,0,0,0"
                     Style="{StaticResource CaptionTextBlockStyle}" />
