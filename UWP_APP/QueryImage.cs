@@ -42,7 +42,7 @@ namespace UWP_APP
             return distance;
         }
 
-        private static int[] Project_0DEG(byte[][] data)
+        private static int[] Project_0DEG(List<List<byte>> data)
         {
             int[] result = { };
             foreach (var row in Enumerable.Range(0, 28)) {
@@ -56,7 +56,7 @@ namespace UWP_APP
             return result;
         }
 
-        private static int[] Project_45DEG(byte[][] data)
+        private static int[] Project_45DEG(List<List<byte>> data)
         {
             int[] result = { };
             foreach (var col in Enumerable.Range(0, 28))
@@ -71,7 +71,7 @@ namespace UWP_APP
             return result;
         }
 
-        private static int[] Project_90DEG(byte[][] data)
+        private static int[] Project_90DEG(List<List<byte>> data)
         {
             int[] result = { };
             foreach (var col in Enumerable.Range(0, 28))
@@ -88,14 +88,22 @@ namespace UWP_APP
 
         public static int[] Generate_Barcode(byte[] raw, int width, int height)
         {
-            byte[][] formatted_data = new byte[height][];
+            List<List<byte>> formatted_data = new List<List<byte>>();
+            // byte[][] formatted_data = new byte[height][]; // ** replaced with line above **
             for (int i = 0; i < raw.Length; i+=width*4) //for each row
             {
-                byte[] temp = {};
+                List<byte> temp = new List<byte>();
+                // byte[] temp = {}; // ** replaced with line above **
                 for (int j = i; j < i + width*4; j+=4) //for each column in current row
                 {
                     byte new_pixel = (byte)(raw[j] * 0.11 + raw[j + 1] * 0.59 + raw[j + 2] * 0.3); //make pixel grayscale
-                    temp.Append(new_pixel); //add pixel to row
+                    temp.Add(new_pixel); //add pixel to row
+                    // temp.Append(new_pixel); // ** replaced with line above **
+                    
+                    // List<int> result = new List<int>();
+                    // Console.WriteLine(result.Count);
+                    // result.Add(3);
+                    // Console.WriteLine(result.Count);
 
                     //NEED TO USE VECTORS NOT ARRAYS
                 }

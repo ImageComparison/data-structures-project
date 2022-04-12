@@ -1,25 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\GitHub\\data-structures-project\\UWP_APP\\UWP_APP.csproj": {}
+    "C:\\Users\\alden\\RiderProjects\\data-structures-project\\UWP_APP\\UWP_APP.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\GitHub\\data-structures-project\\UWP_APP\\UWP_APP.csproj": {
+    "C:\\Users\\alden\\RiderProjects\\data-structures-project\\UWP_APP\\UWP_APP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\GitHub\\data-structures-project\\UWP_APP\\UWP_APP.csproj",
+        "projectUniqueName": "C:\\Users\\alden\\RiderProjects\\data-structures-project\\UWP_APP\\UWP_APP.csproj",
         "projectName": "UWP_APP",
-        "projectPath": "D:\\Documents\\GitHub\\data-structures-project\\UWP_APP\\UWP_APP.csproj",
-        "packagesPath": "C:\\Users\\johnh\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\GitHub\\data-structures-project\\UWP_APP\\obj\\",
+        "projectPath": "C:\\Users\\alden\\RiderProjects\\data-structures-project\\UWP_APP\\UWP_APP.csproj",
+        "packagesPath": "C:\\Users\\alden\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alden\\RiderProjects\\data-structures-project\\UWP_APP\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
+          "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\johnh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alden\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
