@@ -35,17 +35,19 @@ namespace UWP_APP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private List<string> ref_directories = new List<string>();
+        private List<string> ref_names = new List<string>();
+        private List<List<byte>> ref_raw_data =  new List<List<byte>>(); //[ref_item][byte]
+        private List<uint> ref_widths = new List<uint>();
+        private List<uint> ref_heights = new List<uint>();
+        List<List<int>> ref_barcodes = new List<List<int>>();
+
         private string query_directory = "";
-        private string[] ref_directories = { };
-        private string[] ref_names = { };
-        private byte[][] ref_raw_data; //[ref_item][byte]
-        private uint[] ref_widths = { };
-        private uint[] ref_heights = { };
-        int[][] ref_barcodes;
-        private byte[] query_raw_data;
+        private string query_name = "";
+        private List<byte> query_raw_data = new List<byte>();
         private int query_width;
         private int query_height;
-        int[] query_barcode;
+        List<int> query_barcode;
 
         public MainPage()
         {
@@ -189,10 +191,11 @@ namespace UWP_APP
                         ColorManagementMode.DoNotColorManage
                     );
 
-                    query_raw_data = pixeldata.DetachPixelData(); //get raw img data
+                    query_raw_data = pixeldata.DetachPixelData().ToList(); //get raw img data
                 }
 
                 img_query.Source = bitmap; //Update query image display on ui
+                //TODO: UPDATE IMAGE NAME
             }
         }
 
@@ -225,6 +228,7 @@ namespace UWP_APP
             }
         }
 
+        /*
         private async void AddFolderButton_Click(object sender, RoutedEventArgs e)
         {
             var folderPicker = new Windows.Storage.Pickers.FolderPicker();
@@ -239,12 +243,13 @@ namespace UWP_APP
 
                 //TODO: Update list on side to include new folder
 
-                /*
-                Windows.Storage.AccessCache.StorageApplicationPermissions.
-                FutureAccessList.AddOrReplace("PickedFolderToken", folder);
-                */
+                
+                //Windows.Storage.AccessCache.StorageApplicationPermissions.
+                //FutureAccessList.AddOrReplace("PickedFolderToken", folder);
+                
             }
         }
+        */
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -260,7 +265,7 @@ namespace UWP_APP
             ref_widths = null;
             ref_raw_data = null;
 
-            for (int i = 0; i < ref_names.Length; i++)
+            for (int i = 0; i < ref_names.Count; i++)
             {
                 Get_Raw_Data(i); //Get raw data for ref img at index i
                 ref_barcodes[i] = QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i]); //generate barcode for said image
@@ -295,7 +300,7 @@ namespace UWP_APP
                         ColorManagementMode.DoNotColorManage
                     );
 
-                    ref_raw_data.Append(pixeldata.DetachPixelData()); //get raw img data
+                    ref_raw_data.Add(pixeldata.DetachPixelData().ToList()); //get raw img data
                 }
             }
         }
