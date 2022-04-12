@@ -33,12 +33,10 @@ namespace UWP_APP
             if (length != b.Length)
                 return -1;
 
-            var counter = 0;
             var distance = 0;
-            while (counter < length) {
-                if (a[counter] == b[counter])
+            for (int i = 0; i < length; i++) {
+                if (a[i] == b[i])
                     distance++;
-                counter++;
             }
 
             return distance;
@@ -88,7 +86,7 @@ namespace UWP_APP
             return result;
         }
 
-        public static byte[] Generate_Barcode(byte[] raw, int width, int height)
+        public static int[] Generate_Barcode(byte[] raw, int width, int height)
         {
             byte[][] formatted_data = new byte[height][];
             for (int i = 0; i < raw.Length; i+=width*4) //for each row
@@ -98,16 +96,22 @@ namespace UWP_APP
                 {
                     byte new_pixel = (byte)(raw[j] * 0.11 + raw[j + 1] * 0.59 + raw[j + 2] * 0.3); //make pixel grayscale
                     temp.Append(new_pixel); //add pixel to row
+
+                    //NEED TO USE VECTORS NOT ARRAYS
                 }
-                formatted_data[i] = temp; //add row
+                formatted_data[i/(width*4)] = temp; //add row
             }
 
             //getproj0
+            int[] barcode0 = Project_0DEG(formatted_data);
             //getproj45
+            int[] barcode1 = Project_45DEG(formatted_data);
             //getproj90
+            int[] barcode2 = Project_90DEG(formatted_data);
             //getproj135
+            int[] barcode3 = { };//Project_135DEG(formatted_data);
 
-
+            //return (int[])barcode0.Concat(barcode1.Concat(barcode2.Concat(barcode3)));
             return null;
         }
 

@@ -38,16 +38,20 @@ namespace UWP_APP
         private string query_directory = "";
         private string[] ref_directories = { };
         private string[] ref_names = { };
+        private byte[][] ref_raw_data; //[ref_item][byte]
+        private uint[] ref_widths = { };
+        private uint[] ref_heights = { };
+        int[][] ref_barcodes;
         private byte[] query_raw_data;
-        private int query_height;
         private int query_width;
+        private int query_height;
+        int[] query_barcode;
 
         public MainPage()
         {
             this.InitializeComponent();
             
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            
 
             titleBar.ButtonBackgroundColor = Colors.Transparent;
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
@@ -186,7 +190,6 @@ namespace UWP_APP
                     );
 
                     query_raw_data = pixeldata.DetachPixelData(); //get raw img data
-                    Console.WriteLine();
                 }
 
                 img_query.Source = bitmap; //Update query image display on ui
@@ -207,8 +210,13 @@ namespace UWP_APP
             {
                 foreach (Windows.Storage.StorageFile file in files)
                 {
+                    ImageProperties properties = await file.Properties.GetImagePropertiesAsync(); //get image height and width
                     ref_directories.Append(file.Path); //add file directories to array
                     ref_names.Append(file.Name); //add file names to array
+                    uint image_width = properties.Width;
+                    uint image_height = properties.Height;
+                    ref_widths.Append(image_width);
+                    ref_heights.Append(image_height);
 
                     //TODO: Update list on side to include new items
                     //NavigationViewControl.MenuItems.Add();
@@ -245,8 +253,51 @@ namespace UWP_APP
 
         private void CompareButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: START PYTHON CODE
-            QueryImage.Generate_Barcode(query_raw_data, query_width, query_height);
+            query_barcode = QueryImage.Generate_Barcode(query_raw_data, query_width, query_height);
+
+            ref_barcodes = null;
+            ref_heights = null;
+            ref_widths = null;
+            ref_raw_data = null;
+
+            for (int i = 0; i < ref_names.Length; i++)
+            {
+                Get_Raw_Data(i); //Get raw data for ref img at index i
+                ref_barcodes[i] = QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i]); //generate barcode for said image
+            }
+        }
+
+        private async void Get_Raw_Data(int index)
+        {
+            Windows.Storage.StorageFile file = await StorageFile.GetFileFromPathAsync(ref_directories[index]);
+
+            if (file != null)
+            {
+                WriteableBitmap bitmap = new WriteableBitmap(64, 64); //create WriteableBitmap with correct pix sizes
+
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read)) //get byte array from WriteableBitmap
+                {
+                    BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                    bitmap.SetSource(stream);
+
+                    //Scale image
+                    BitmapTransform transform = new BitmapTransform()
+                    {
+                        ScaledWidth = ref_widths[index],
+                        ScaledHeight = ref_heights[index]
+                    };
+
+                    PixelDataProvider pixeldata = await decoder.GetPixelDataAsync(
+                        BitmapPixelFormat.Bgra8,
+                        BitmapAlphaMode.Straight,
+                        transform,
+                        ExifOrientationMode.IgnoreExifOrientation,
+                        ColorManagementMode.DoNotColorManage
+                    );
+
+                    ref_raw_data.Append(pixeldata.DetachPixelData()); //get raw img data
+                }
+            }
         }
     }
 }
