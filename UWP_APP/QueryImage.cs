@@ -28,7 +28,7 @@ namespace UWP_APP
         //}
 
         // Compare 2 bit strings, find how many bits are the same between them
-        public static int HammingDistance(String a, String b) { // O(n)
+        public static float HammingDistance(String a, String b) { // O(n)
             var length = a.Length;
             if (length != b.Length)
                 return -1;
@@ -39,54 +39,54 @@ namespace UWP_APP
                     distance++;
             }
 
-            return distance;
+            return distance/(float)length;
         }
 
-        private static int[] Project_0DEG(List<List<byte>> data) // O(n^2)
+        private static List<int> Project_0DEG(List<List<byte>> data) // O(n^2)
         {
-            int[] result = { };
+            List<int> result = new List<int>();
             foreach (var row in Enumerable.Range(0, 28)) { // O(n)
                 int rowSumData = 0;
                 foreach (var cell in Enumerable.Range(0, 28)) // O(n)
                     rowSumData += data[row][cell];
 
-                result.Append(rowSumData);
+                result.Add(rowSumData);
             }
 
             return result;
         }
 
-        private static int[] Project_45DEG(List<List<byte>> data) // O(n^2)
+        private static List<int> Project_45DEG(List<List<byte>> data) // O(n^2)
         {
-            int[] result = { };
+            List<int> result = new List<int>();
             foreach (var col in Enumerable.Range(0, 28))
             {
                 int colSumData = 0;
                 foreach (var cell in Enumerable.Range(0, 28))
                     colSumData += data[cell][col];
 
-                result.Append(colSumData);
+                result.Add(colSumData);
             }
 
             return result;
         }
 
-        private static int[] Project_90DEG(List<List<byte>> data) // O(n^2)
+        private static List<int> Project_90DEG(List<List<byte>> data) // O(n^2)
         {
-            int[] result = { };
+            List<int> result = new List<int>();
             foreach (var col in Enumerable.Range(0, 28))
             {
                 int colSumData = 0;
                 foreach (var cell in Enumerable.Range(0, 28))
                     colSumData += data[cell][col];
 
-                result.Append(colSumData);
+                result.Add(colSumData);
             }
 
             return result;
         }
 
-        private static int[] Project_135DEG(List<List<byte>> data) // O(n^2)
+        private static List<int> Project_135DEG(List<List<byte>> data) // O(n^2)
         {
             // var rot_data = data
                 // .SelectMany(inner => inner.Select((item, index) => new { item, index }))
@@ -99,7 +99,7 @@ namespace UWP_APP
             
             
             
-            int[] result = { };
+            List<int> result = new List<int>();
             foreach (var col in Enumerable.Range(0, 28))
             {
                 int colSumData = 0;
@@ -108,17 +108,17 @@ namespace UWP_APP
                     colSumData += data[cell][col]; // delete when working
 
 
-                result.Append(colSumData);
+                result.Add(colSumData);
             }
 
             return result;
         }
         
-        public static int[] Generate_Barcode(byte[] raw, int width, int height) // O(n^2)
+        public static List<int> Generate_Barcode(List<byte> raw, int width, int height) // O(n^2)
         {
             List<List<byte>> formatted_data = new List<List<byte>>();
-            // byte[][] formatted_data = new byte[height][]; // ** replaced with line above **
-            for (int i = 0; i < raw.Length; i+=width*4) //for each row // O(n)
+            
+            for (int i = 0; i < raw.Count; i+=width*4) //for each row // O(n)
             {
                 List<byte> temp = new List<byte>();
                 // byte[] temp = {}; // ** replaced with line above **
@@ -135,20 +135,19 @@ namespace UWP_APP
 
                     //NEED TO USE VECTORS NOT ARRAYS
                 }
-                formatted_data[i/(width*4)] = temp; //add row
+                formatted_data.Add(temp); //add row
             }
 
             //getproj0
-            int[] barcode0 = Project_0DEG(formatted_data);
+            List<int> barcode0 = Project_0DEG(formatted_data);
             //getproj45
-            int[] barcode1 = Project_45DEG(formatted_data);
+            List<int> barcode1 = Project_45DEG(formatted_data);
             //getproj90
-            int[] barcode2 = Project_90DEG(formatted_data);
+            List<int> barcode2 = Project_90DEG(formatted_data);
             //getproj135
-            int[] barcode3 = { };//Project_135DEG(formatted_data);
+            List<int> barcode3 = new List<int>();//Project_135DEG(formatted_data);
 
-            //return (int[])barcode0.Concat(barcode1.Concat(barcode2.Concat(barcode3)));
-            return null;
+            return (barcode0.Concat(barcode1.Concat(barcode2.Concat(barcode3).ToList()).ToList()).ToList());
         }
 
         QueryImage() {
