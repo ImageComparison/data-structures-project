@@ -191,18 +191,6 @@ namespace ImageComparison
                     data[i, j] = pixel; // Add pixel
                 }
             }
-                    
-
-            //for (int i = 0; i < raw.Count; i += width * 4) // O(n)
-            //{
-            //    // For each column in current row 
-            //    for (int j = i; j < i + width * 4; j += 4) // O(n)
-            //    {
-            //        // Make pixel grayscale
-            //        byte pixel = (byte)(raw[j] * 0.11 + raw[j + 1] * 0.59 + raw[j + 2] * 0.3);
-            //        data[i, j] = pixel; // Add pixel
-            //    }
-            //}
 
             // Different projection angles
             var barcode0 = Project_0DEG(data);

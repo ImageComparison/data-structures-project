@@ -307,7 +307,7 @@ namespace ImageComparison
             }
         }
 
-        private void CompareButton_Click(object sender, RoutedEventArgs e)
+        private async void CompareButton_Click(object sender, RoutedEventArgs e)
         {
             query_barcode = QueryImage.Generate_Barcode(query_raw_data, query_width, query_height);
 
@@ -318,7 +318,7 @@ namespace ImageComparison
 
             for (int i = 0; i < ref_names.Count; i++)
             {
-                Get_Raw_Data(i); //Get raw data for ref img at index i
+                await Get_Raw_Data(i); //Get raw data for ref img at index i
                 ref_barcodes.Add(QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i])); //generate barcode for said image
                 distances.Add(QueryImage.HammingDistance("", "")); //compare query barcode with ref barcode
 
@@ -330,7 +330,7 @@ namespace ImageComparison
             //TODO: Connect ref_barcodes to HammingDistance
         }
 
-        private async void Get_Raw_Data(int index)
+        private async Task Get_Raw_Data(int index)
         {
             Windows.Storage.StorageFile file = await FALManip.GetFileForToken(FAL_tokens[index]);
 
@@ -338,45 +338,28 @@ namespace ImageComparison
             {
                 WriteableBitmap bitmap = new WriteableBitmap(64, 64); //create WriteableBitmap with correct pix sizes
 
-                try
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read)) //get byte array from WriteableBitmap
                 {
-                    IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read);
-                    using (stream) //get byte array from WriteableBitmap
+                    BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                    bitmap.SetSource(stream);
+
+                    //Scale image
+                    BitmapTransform transform = new BitmapTransform()
                     {
-                        BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
-                        bitmap.SetSource(stream);
-                    }
-                    stream.Dispose();
+                        ScaledWidth = ref_widths[index],
+                        ScaledHeight = ref_heights[index]
+                    };
+
+                    PixelDataProvider pixeldata = await decoder.GetPixelDataAsync(
+                        BitmapPixelFormat.Bgra8,
+                        BitmapAlphaMode.Straight,
+                        transform,
+                        ExifOrientationMode.IgnoreExifOrientation,
+                        ColorManagementMode.DoNotColorManage
+                    );
+
+                    ref_raw_data.Add(pixeldata.DetachPixelData().ToList()); //get raw img data
                 }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-                
-
-                //using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read)) //get byte array from WriteableBitmap
-                //{
-                //    BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
-                //    bitmap.SetSource(stream);
-
-                //    //Scale image
-                //    BitmapTransform transform = new BitmapTransform()
-                //    {
-                //        ScaledWidth = ref_widths[index],
-                //        ScaledHeight = ref_heights[index]
-                //    };
-
-                //    PixelDataProvider pixeldata = await decoder.GetPixelDataAsync(
-                //        BitmapPixelFormat.Bgra8,
-                //        BitmapAlphaMode.Straight,
-                //        transform,
-                //        ExifOrientationMode.IgnoreExifOrientation,
-                //        ColorManagementMode.DoNotColorManage
-                //    );
-
-                //    ref_raw_data.Add(pixeldata.DetachPixelData().ToList()); //get raw img data
-                //}
             }
         }
 
@@ -394,7 +377,6 @@ namespace ImageComparison
                     BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
                     bitmap.SetSource(stream);
                 }
-                stream.Dispose();
 
                 img_ref.Source = bitmap; //Update ref image display on ui
                 tb_referenceimage.Text = "Reference Image - " + ref_names[index]; //Update image name display on ui

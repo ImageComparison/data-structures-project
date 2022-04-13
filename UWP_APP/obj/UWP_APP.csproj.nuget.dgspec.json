@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\GitHub\\data-structures-project\\UWP_APP\\UWP_APP.csproj": {}
+    "C:\\Users\\femik\\OneDrive - Ontario Tech University\\Year 2\\Semester 2\\Data Structures\\WinUI3-Demo-App\\UWP_APP\\UWP_APP\\UWP_APP.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\GitHub\\data-structures-project\\UWP_APP\\UWP_APP.csproj": {
+    "C:\\Users\\femik\\OneDrive - Ontario Tech University\\Year 2\\Semester 2\\Data Structures\\WinUI3-Demo-App\\UWP_APP\\UWP_APP\\UWP_APP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\GitHub\\data-structures-project\\UWP_APP\\UWP_APP.csproj",
+        "projectUniqueName": "C:\\Users\\femik\\OneDrive - Ontario Tech University\\Year 2\\Semester 2\\Data Structures\\WinUI3-Demo-App\\UWP_APP\\UWP_APP\\UWP_APP.csproj",
         "projectName": "UWP_APP",
-        "projectPath": "D:\\Documents\\GitHub\\data-structures-project\\UWP_APP\\UWP_APP.csproj",
-        "packagesPath": "C:\\Users\\johnh\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\GitHub\\data-structures-project\\UWP_APP\\obj\\",
+        "projectPath": "C:\\Users\\femik\\OneDrive - Ontario Tech University\\Year 2\\Semester 2\\Data Structures\\WinUI3-Demo-App\\UWP_APP\\UWP_APP\\UWP_APP.csproj",
+        "packagesPath": "C:\\Users\\femik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\femik\\OneDrive - Ontario Tech University\\Year 2\\Semester 2\\Data Structures\\WinUI3-Demo-App\\UWP_APP\\UWP_APP\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\johnh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\femik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
