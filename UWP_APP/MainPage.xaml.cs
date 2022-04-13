@@ -291,7 +291,7 @@ namespace UWP_APP
                 ref_directories.RemoveAt(input_select_index);
                 ref_widths.RemoveAt(input_select_index);
                 ref_heights.RemoveAt(input_select_index);
-                FALManip.RemoveFileByToken(FAL_tokens[input_select_index]);
+                FAL_tokens = FALManip.RemoveFileByToken(FAL_tokens[input_select_index], FAL_tokens); //remove FAL token from FAL and token list
             }
             if (ref_names.Count == 0)
             {

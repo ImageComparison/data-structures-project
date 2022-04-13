@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
@@ -42,10 +43,12 @@ namespace UWP_APP
             var fal = StorageApplicationPermissions.FutureAccessList;
             fal.Clear();
         }
-        public static void RemoveFileByToken(string token) //removes specific token
+        public static List<string> RemoveFileByToken(string token, List<string> tokenList) //removes specific token from FAL and tokenlist
         {
             var fal = StorageApplicationPermissions.FutureAccessList;
             fal.Remove(token);
+            tokenList.Remove(token);
+            return tokenList;
         }
     }
 }
