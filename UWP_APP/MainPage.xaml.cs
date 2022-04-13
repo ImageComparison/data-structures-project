@@ -171,6 +171,7 @@ namespace UWP_APP
                 query_height = (int)image_height;
 
                 query_directory = file.Path; //save file path
+                query_name = file.Name; //save file name
                 WriteableBitmap bitmap = new WriteableBitmap(64, 64); //create WriteableBitmap with correct pix sizes
 
                 using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read)) //get byte array from WriteableBitmap
@@ -197,7 +198,7 @@ namespace UWP_APP
                 }
 
                 img_query.Source = bitmap; //Update query image display on ui
-                //TODO: UPDATE IMAGE NAME
+                tb_queryimage.Text = "Query Image - " + query_name; //Update image name display on ui
             }
         }
 

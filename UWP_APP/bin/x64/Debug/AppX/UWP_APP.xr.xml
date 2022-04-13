@@ -119,6 +119,7 @@
       <RootProperty Name="Style" />
       <RootProperty Name="Inlines" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="Name" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Text" />
