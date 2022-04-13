@@ -55,6 +55,8 @@ namespace ImageComparison
         private int input_select_index = -1;
         private List<string> FAL_tokens = new List<string>(); //tokens for future access list
 
+        private List<string> bar_strings_temp = new List<string>();
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -320,13 +322,22 @@ namespace ImageComparison
             {
                 await Get_Raw_Data(i); //Get raw data for ref img at index i
                 ref_barcodes.Add(QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i])); //generate barcode for said image
-                distances.Add(QueryImage.HammingDistance(query_barcode, ref_barcodes[i])); //compare query barcode with ref barcode
+
+                string bar_string = "";
+                foreach(byte b in ref_barcodes[i])
+                {
+                    bar_string += b.ToString();
+                }
+                bar_strings_temp.Add(bar_string);
+
+                distances.Add(QueryImage.HammingDistance(query_barcode, ref_barcodes[i])); //compare query barcode with ref barcode//compare query barcode with ref barcode
 
                 MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem(); //Add new item to NavigationView list to display file name
                 navitem.Content = ref_names[i] + " (" + distances[i] * 100 + "%)";
                 nv_output.MenuItems.Add(navitem);
             }
 
+            Save_Barcodes();
             //TODO: Connect ref_barcodes to HammingDistance
         }
 
@@ -380,6 +391,26 @@ namespace ImageComparison
 
                 img_ref.Source = bitmap; //Update ref image display on ui
                 tb_referenceimage.Text = "Reference Image - " + ref_names[index]; //Update image name display on ui
+            }
+        }
+
+        private async void Save_Barcodes()
+        {
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+            picker.FileTypeFilter.Add(".txt");
+
+            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+            if (file != null)
+            {
+                string temp = "";
+                for (int i = 0; i < bar_strings_temp.Count; i++)
+                {
+                    temp += bar_strings_temp[i] + "\n";
+                }
+
+                await Windows.Storage.FileIO.WriteTextAsync(file, temp);
             }
         }
     }
