@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-12T21:37:13.487</Modified>
+      <Modified>2022-04-13T00:05:10.204</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\UWP_APP.exe">
       <PackagePath>entrypoint\UWP_APP.exe</PackagePath>
-      <Modified>2022-04-12T21:37:12.660</Modified>
+      <Modified>2022-04-13T00:05:08.533</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.13\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -90,11 +90,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-04-12T21:37:12.508</Modified>
+      <Modified>2022-04-13T00:05:08.325</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2022-04-12T21:37:12.508</Modified>
+      <Modified>2022-04-13T00:05:08.325</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\X64\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -110,11 +110,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-04-12T03:02:16.576</Modified>
+      <Modified>2022-04-13T00:05:09.144</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\Core\UWP_APP.exe">
       <PackagePath>UWP_APP.exe</PackagePath>
-      <Modified>2022-04-12T21:37:13.477</Modified>
+      <Modified>2022-04-13T00:05:10.189</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

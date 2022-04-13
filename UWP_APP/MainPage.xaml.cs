@@ -42,6 +42,8 @@ namespace UWP_APP
         private List<uint> ref_heights = new List<uint>();
         List<List<int>> ref_barcodes = new List<List<int>>();
 
+        List<float> distances = new List<float>();
+
         private string query_directory = "";
         private string query_name = "";
         private List<byte> query_raw_data = new List<byte>();
@@ -214,12 +216,12 @@ namespace UWP_APP
                 foreach (Windows.Storage.StorageFile file in files)
                 {
                     ImageProperties properties = await file.Properties.GetImagePropertiesAsync(); //get image height and width
-                    ref_directories.Append(file.Path); //add file directories to array
-                    ref_names.Append(file.Name); //add file names to array
+                    ref_directories.Add(file.Path); //add file directories to array
+                    ref_names.Add(file.Name); //add file names to array
                     uint image_width = properties.Width;
                     uint image_height = properties.Height;
-                    ref_widths.Append(image_width);
-                    ref_heights.Append(image_height);
+                    ref_widths.Add(image_width);
+                    ref_heights.Add(image_height);
 
                     //TODO: Update list on side to include new items
                     //NavigationViewControl.MenuItems.Add();
@@ -238,8 +240,8 @@ namespace UWP_APP
             Windows.Storage.StorageFolder folder = await folderPicker.PickSingleFolderAsync();
             if (folder != null)
             {
-                ref_directories.Append(folder.Path);
-                ref_names.Append(folder.Name);
+                ref_directories.Add(folder.Path);
+                ref_names.Add(folder.Name);
 
                 //TODO: Update list on side to include new folder
 
@@ -268,8 +270,11 @@ namespace UWP_APP
             for (int i = 0; i < ref_names.Count; i++)
             {
                 Get_Raw_Data(i); //Get raw data for ref img at index i
-                ref_barcodes[i] = QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i]); //generate barcode for said image
+                ref_barcodes.Add(QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i])); //generate barcode for said image
+                distances.Add(QueryImage.HammingDistance("", "")); //compare query barcode with ref barcode
             }
+
+            //output
         }
 
         private async void Get_Raw_Data(int index)

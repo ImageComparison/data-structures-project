@@ -121,7 +121,6 @@ namespace UWP_APP
             for (int i = 0; i < raw.Count; i+=width*4) //for each row // O(n)
             {
                 List<byte> temp = new List<byte>();
-                // byte[] temp = {}; // ** replaced with line above **
                 for (int j = i; j < i + width*4; j+=4) //for each column in current row // O(n)
                 {
                     byte new_pixel = (byte)(raw[j] * 0.11 + raw[j + 1] * 0.59 + raw[j + 2] * 0.3); //make pixel grayscale
@@ -145,7 +144,7 @@ namespace UWP_APP
             //getproj90
             List<int> barcode2 = Project_90DEG(formatted_data);
             //getproj135
-            List<int> barcode3 = new List<int>();//Project_135DEG(formatted_data);
+            List<int> barcode3 = Project_135DEG(formatted_data);
 
             return (barcode0.Concat(barcode1.Concat(barcode2.Concat(barcode3).ToList()).ToList()).ToList());
         }
