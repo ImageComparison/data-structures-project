@@ -13,6 +13,7 @@ using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
 using Windows.UI;
 using Windows.UI.ViewManagement;
@@ -42,12 +43,17 @@ namespace ImageComparison
         private List<uint> ref_heights = new List<uint>();
         List<List<int>> ref_barcodes = new List<List<int>>();
 
+        List<float> distances = new List<float>();
+
         private string query_directory = "";
         private string query_name = "";
         private List<byte> query_raw_data = new List<byte>();
         private int query_width;
         private int query_height;
         List<int> query_barcode;
+
+        private int input_select_index = -1;
+        private List<string> FAL_tokens = new List<string>(); //tokens for future access list
 
         public MainPage()
         {
@@ -76,7 +82,11 @@ namespace ImageComparison
 
             //Register a handler for when the window changes focus
             Window.Current.Activated += Current_Activated;
+
+            //Clear FAL data
+            FALManip.ClearFAL();
         }
+
         private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
             UpdateTitleBarLayout(sender);
@@ -150,6 +160,13 @@ namespace ImageComparison
             }
         }
 
+        private void NavigationViewControl_ItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs args)
+        {
+            object navitem_name = args.InvokedItem;
+            input_select_index = ref_names.IndexOf(navitem_name.ToString());
+            Set_Ref_Image(input_select_index);
+        }
+
         public async void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
             var picker = new Windows.Storage.Pickers.FileOpenPicker();
@@ -169,6 +186,7 @@ namespace ImageComparison
                 query_height = (int)image_height;
 
                 query_directory = file.Path; //save file path
+                query_name = file.Name; //save file name
                 WriteableBitmap bitmap = new WriteableBitmap(64, 64); //create WriteableBitmap with correct pix sizes
 
                 using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read)) //get byte array from WriteableBitmap
@@ -195,7 +213,12 @@ namespace ImageComparison
                 }
 
                 img_query.Source = bitmap; //Update query image display on ui
-                //TODO: UPDATE IMAGE NAME
+                tb_queryimage.Text = "Query Image - " + query_name; //Update image name display on ui
+
+                if (ref_names.Count > 0)
+                {
+                    CompareButton.IsEnabled = true;
+                }
             }
         }
 
@@ -214,16 +237,24 @@ namespace ImageComparison
                 foreach (Windows.Storage.StorageFile file in files)
                 {
                     ImageProperties properties = await file.Properties.GetImagePropertiesAsync(); //get image height and width
-                    ref_directories.Append(file.Path); //add file directories to array
-                    ref_names.Append(file.Name); //add file names to array
+                    ref_directories.Add(file.Path); //add file directories to array
+                    ref_names.Add(file.Name); //add file names to array
                     uint image_width = properties.Width;
                     uint image_height = properties.Height;
-                    ref_widths.Append(image_width);
-                    ref_heights.Append(image_height);
+                    ref_widths.Add(image_width);
+                    ref_heights.Add(image_height);
 
-                    //TODO: Update list on side to include new items
-                    //NavigationViewControl.MenuItems.Add();
-                    //NavigationViewControl.MenuItems.RemoveAt();
+                    MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem(); //Add new item to NavigationView list to display file name
+                    navitem.Content = file.Name;
+                    navitem.Icon = new SymbolIcon(Symbol.Target);
+                    NavigationViewControl.MenuItems.Add(navitem);
+
+
+                    FAL_tokens.Add(FALManip.RememberFile(file)); //Save file ref in FAL
+                }
+                if (query_raw_data.Count > 0)
+                {
+                    CompareButton.IsEnabled = true;
                 }
             }
         }
@@ -238,8 +269,8 @@ namespace ImageComparison
             Windows.Storage.StorageFolder folder = await folderPicker.PickSingleFolderAsync();
             if (folder != null)
             {
-                ref_directories.Append(folder.Path);
-                ref_names.Append(folder.Name);
+                ref_directories.Add(folder.Path);
+                ref_names.Add(folder.Name);
 
                 //TODO: Update list on side to include new folder
 
@@ -253,28 +284,46 @@ namespace ImageComparison
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Remove items from list and from ref_directories and ref_names
+            if (input_select_index != -1)
+            {
+                NavigationViewControl.MenuItems.RemoveAt(input_select_index + 1);
+                ref_names.RemoveAt(input_select_index);
+                ref_directories.RemoveAt(input_select_index);
+                ref_widths.RemoveAt(input_select_index);
+                ref_heights.RemoveAt(input_select_index);
+                FAL_tokens = FALManip.RemoveFileByToken(FAL_tokens[input_select_index], FAL_tokens); //remove FAL token from FAL and token list
+            }
+            if (ref_names.Count == 0)
+            {
+                input_select_index = -1;
+                CompareButton.IsEnabled = false;
+            }
         }
 
         private void CompareButton_Click(object sender, RoutedEventArgs e)
         {
             query_barcode = QueryImage.Generate_Barcode(query_raw_data, query_width, query_height);
 
-            ref_barcodes = null;
-            ref_heights = null;
-            ref_widths = null;
-            ref_raw_data = null;
+            //reset past results
+            ref_barcodes.Clear();
+            ref_raw_data.Clear();
+            distances.Clear();
 
             for (int i = 0; i < ref_names.Count; i++)
             {
                 Get_Raw_Data(i); //Get raw data for ref img at index i
-                ref_barcodes[i] = QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i]); //generate barcode for said image
+                ref_barcodes.Add(QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i])); //generate barcode for said image
+                distances.Add(QueryImage.HammingDistance("", "")); //compare query barcode with ref barcode
             }
+
+            //TODO: Connect ref_barcodes to HammingDistance
+            //TODO: Add output
+            //output
         }
 
         private async void Get_Raw_Data(int index)
         {
-            Windows.Storage.StorageFile file = await StorageFile.GetFileFromPathAsync(ref_directories[index]);
+            Windows.Storage.StorageFile file = await FALManip.GetFileForToken(FAL_tokens[index]);
 
             if (file != null)
             {
@@ -304,5 +353,25 @@ namespace ImageComparison
                 }
             }
         }
+
+        private async void Set_Ref_Image(int index)
+        {
+            Windows.Storage.StorageFile file = await FALManip.GetFileForToken(FAL_tokens[index]);
+
+            if (file != null)
+            {
+                WriteableBitmap bitmap = new WriteableBitmap(64, 64); //create WriteableBitmap with correct pix sizes
+
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read)) //get byte array from WriteableBitmap
+                {
+                    BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                    bitmap.SetSource(stream);
+                }
+
+                img_ref.Source = bitmap; //Update ref image display on ui
+                tb_referenceimage.Text = "Reference Image - " + ref_names[index]; //Update image name display on ui
+            }
+        }
+
     }
 }

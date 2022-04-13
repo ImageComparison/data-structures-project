@@ -58,16 +58,17 @@
             IsBackButtonVisible="Collapsed" 
             DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
             IsSettingsVisible="False"
+            ItemInvoked="NavigationViewControl_ItemInvoked"
             Canvas.ZIndex="0">
 
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItemHeader Content="Reference Images"/>
 
-                <muxc:NavigationViewItem Icon="Target" Content="Image 1"/>
+                <!--<muxc:NavigationViewItem Icon="Target" Content="Image 1"/>
                 <muxc:NavigationViewItem Icon="Target" Content="Image 2"/>
                 <muxc:NavigationViewItem Icon="Target" Content="Image 3"/>
                 <muxc:NavigationViewItem Icon="Target" Content="Image 4"/>
-                <muxc:NavigationViewItem Icon="Target" Content="Image 5"/>
+                <muxc:NavigationViewItem Icon="Target" Content="Image 5"/>-->
             </muxc:NavigationView.MenuItems>
 
             <muxc:NavigationView.PaneFooter>
@@ -148,6 +149,7 @@
                                             Click="CompareButton_Click"
                                             Grid.Column="1" 
                                             VerticalAlignment="Center"
+                                            IsEnabled="False"
                                             Style="{ThemeResource AccentButtonStyle}">
                                             Compare
                                         </Button>
@@ -183,21 +185,22 @@
                                             </Border>
 
                                             <TextBlock 
+                                                Name="tb_referenceimage"
                                                 Margin="16" 
                                                 Style="{ThemeResource BodyTextBlockStyle}" 
-                                                HorizontalAlignment="Center">Reference Image 1</TextBlock>
+                                                HorizontalAlignment="Center">Reference Image - image.png</TextBlock>
                                         </StackPanel>
 
                                         <StackPanel 
                                             Padding="18, 0, 18, 0"
                                             Orientation="Vertical" 
-                                            HorizontalAlignment="Right"
+                                            HorizontalAlignment="Center"
                                             VerticalAlignment="Stretch">
 
                                             <Border
                                                 Height="200" 
                                                 Background="{ThemeResource LayerFillColorDefaultBrush}"
-                                                HorizontalAlignment="Center" 
+                                                HorizontalAlignment="Stretch" 
                                                 VerticalAlignment="Stretch" 
                                                 CornerRadius="8"
                                                 BorderThickness="1"
@@ -211,6 +214,7 @@
                                             </Border>
 
                                             <TextBlock 
+                                                Name="tb_queryimage"
                                                 Margin="16" 
                                                 Style="{ThemeResource BodyTextBlockStyle}" 
                                                 HorizontalAlignment="Center">Query Image - image.png</TextBlock>
