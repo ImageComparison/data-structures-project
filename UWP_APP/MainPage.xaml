@@ -256,10 +256,11 @@
                                 ItemInvoked="nv_output_ItemInvoked"
                                 IsSettingsVisible="False">
                                 <muxc:NavigationView.MenuItems>
+                                    <!--<muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
                                     <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
                                     <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
-                                    <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
-                                    <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
+                                    <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />-->
+                                    
                                 </muxc:NavigationView.MenuItems>
                             </muxc:NavigationView>
 

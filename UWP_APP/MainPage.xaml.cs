@@ -170,7 +170,7 @@ namespace ImageComparison
         private void nv_output_ItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs args)
         {
             object navitem_name = args.InvokedItem;
-            input_select_index = ref_names.IndexOf(navitem_name.ToString());
+            input_select_index = ref_names.IndexOf(navitem_name.ToString().Split(" (")[0]); //only uses first part of content as name
             Set_Ref_Image(input_select_index);
         }
 

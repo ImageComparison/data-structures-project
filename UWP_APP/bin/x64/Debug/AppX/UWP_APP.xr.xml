@@ -121,10 +121,6 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Text" />
     </RootType>
-    <RootType FullName="Microsoft.UI.Xaml.Controls.NavigationViewItem">
-      <RootProperty Name="Content" />
-      <RootProperty Name="Tag" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
       <RootProperty Name="Content" />
     </RootType>
