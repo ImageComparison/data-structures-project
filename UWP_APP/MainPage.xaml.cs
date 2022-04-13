@@ -50,7 +50,7 @@ namespace ImageComparison
         private List<byte> query_raw_data = new List<byte>();
         private int query_width;
         private int query_height;
-        List<int> query_barcode;
+        List<int> query_barcode = new List<int>();
 
         private int input_select_index = -1;
         private List<string> FAL_tokens = new List<string>(); //tokens for future access list

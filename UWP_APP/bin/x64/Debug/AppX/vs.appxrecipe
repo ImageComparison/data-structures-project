@@ -30,33 +30,17 @@
     <AppXManifest Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-13T06:45:08.118</Modified>
+      <Modified>2022-04-13T08:34:16.169</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\UWP_APP.exe">
       <PackagePath>entrypoint\UWP_APP.exe</PackagePath>
-      <Modified>2022-04-13T06:45:04.161</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\femik\.nuget\packages\numpy\3.7.1.28\lib\netstandard2.0\Numpy.dll">
-      <PackagePath>Numpy.dll</PackagePath>
-      <Modified>2022-01-26T12:21:06.000</Modified>
+      <Modified>2022-04-13T08:34:13.763</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\.nuget\packages\numpydotnet\0.9.77\lib\netstandard2.0\NumpyDotNet.dll">
       <PackagePath>NumpyDotNet.dll</PackagePath>
       <Modified>2022-04-10T15:59:32.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\femik\.nuget\packages\python.deployment\1.2.0\lib\netstandard2.0\Python.Deployment.dll">
-      <PackagePath>Python.Deployment.dll</PackagePath>
-      <Modified>2020-09-07T17:43:26.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\femik\.nuget\packages\python.included\3.7.3.13\lib\netstandard2.0\Python.Included.dll">
-      <PackagePath>Python.Included.dll</PackagePath>
-      <Modified>2020-09-16T11:04:16.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\femik\.nuget\packages\pythonnet_netstandard_py37_win\2.5.1\lib\netstandard2.0\Python.Runtime.dll">
-      <PackagePath>Python.Runtime.dll</PackagePath>
-      <Modified>2020-07-31T17:31:54.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.13\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -106,15 +90,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\UWP_APP.xr.xml">
       <PackagePath>UWP_APP.xr.xml</PackagePath>
-      <Modified>2022-04-13T00:37:10.739</Modified>
+      <Modified>2022-04-13T06:55:14.591</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-04-13T06:45:03.802</Modified>
+      <Modified>2022-04-13T08:34:13.457</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2022-04-13T06:45:03.801</Modified>
+      <Modified>2022-04-13T08:34:13.456</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\X64\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -130,11 +114,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-04-13T00:49:05.377</Modified>
+      <Modified>2022-04-13T07:01:44.699</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\Core\UWP_APP.exe">
       <PackagePath>UWP_APP.exe</PackagePath>
-      <Modified>2022-04-13T06:45:08.077</Modified>
+      <Modified>2022-04-13T08:34:16.160</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

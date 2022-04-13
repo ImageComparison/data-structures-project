@@ -55,7 +55,8 @@ namespace ImageComparison
          */
         private static List<int> Project_0DEG(byte[,] data) // O(n^2)
         {
-            var size = data.Length;
+            // Get length of row axis
+            var size = data.GetLength(0);
             var result = new List<int>();
             foreach (var row in Enumerable.Range(0, size)) { // O(n)
                 int rowSumData = 0;
@@ -88,7 +89,9 @@ namespace ImageComparison
             {
                 var list = data
                     .diagonal(i)
-                    .ToList<int>();
+                    .ToList<byte>()
+                    .Select((b) => (int)b)
+                    .ToList();
 
                 var sum = list.Sum();
                 diags.Add(sum);
@@ -102,7 +105,8 @@ namespace ImageComparison
          */
         private static List<int> Project_90DEG(byte[,] data) // O(n^2)
         {
-            var size = data.Length;
+            // Get length of column axis
+            var size = data.GetLength(1);
             var result = new List<int>();
             foreach (var col in Enumerable.Range(0, size))
             {
@@ -137,7 +141,9 @@ namespace ImageComparison
                 // Flip the array left to right, so as to get the opposite diagonal
                 var list = np.fliplr(data)
                     .diagonal(i)
-                    .ToList<int>();
+                    .ToList<byte>()
+                    .Select((b) => (int)b)
+                    .ToList();
 
                 var sum = list.Sum();
                 diags.Add(sum);
@@ -147,23 +153,56 @@ namespace ImageComparison
         }
 
         /**
+         * Converts color to greyscale
+         */
+        private static byte toGrayscale(byte red, byte green, byte blue) 
+        {
+            return (byte)((red * 0.11) + (green * 0.59) + (blue * 0.3));
+        }
+
+        /**
          * Generates the barcode for an image if given its data as a list of bytes, and a width & height
          */
         public static List<int> Generate_Barcode(List<byte> raw, int width, int height) // O(n^2)
         {
-            byte[,] data = { };
+            var pixelWidth = width * 4;
+
+            // Greyscale image data
+            var data = new byte[height, width];
+
+            // The initial image data is given as a 1D array
+            var Raw1D = np.array(raw.ToArray());
+
+            // This helps to turn the data into a 2D array.
+            // Given that the image data is a long 1D array of r,g,b,a values,
+            // thus, we have to extend the width of the reshape
+            var Raw2D = Raw1D.reshape(height, pixelWidth);
 
             // For each row
-            for (int i = 0; i < raw.Count; i += width * 4) // O(n)
+            for (int i = 0; i < height; i ++) // O(n)
             {
+                var row = np.array(Raw2D[i]).ToArray<byte>();
+
                 // For each column in current row 
-                for (int j = i; j < i + width * 4; j += 4) // O(n)
+                for (int j = 0; j < width; j ++) // O(n)
                 {
-                    // Make pixel grayscale
-                    byte pixel = (byte)(raw[j] * 0.11 + raw[j + 1] * 0.59 + raw[j + 2] * 0.3);
+                    var index = j * 4;
+                    var pixel = toGrayscale(row[index], row[index + 1], row[index + 2]);
                     data[i, j] = pixel; // Add pixel
                 }
             }
+                    
+
+            //for (int i = 0; i < raw.Count; i += width * 4) // O(n)
+            //{
+            //    // For each column in current row 
+            //    for (int j = i; j < i + width * 4; j += 4) // O(n)
+            //    {
+            //        // Make pixel grayscale
+            //        byte pixel = (byte)(raw[j] * 0.11 + raw[j + 1] * 0.59 + raw[j + 2] * 0.3);
+            //        data[i, j] = pixel; // Add pixel
+            //    }
+            //}
 
             // Different projection angles
             var barcode0 = Project_0DEG(data);

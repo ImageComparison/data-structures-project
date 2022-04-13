@@ -6,7 +6,7 @@ using Windows.Storage.AccessCache;
 
 //Future Access List Manipulation
 
-namespace UWP_APP
+namespace ImageComparison
 {
     internal class FALManip
     {
