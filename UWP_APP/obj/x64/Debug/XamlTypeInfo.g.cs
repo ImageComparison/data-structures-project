@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace UWP_APP
+namespace ImageComparison
 {
     public partial class App : global::Windows.UI.Xaml.Markup.IXamlMetadataProvider
     {

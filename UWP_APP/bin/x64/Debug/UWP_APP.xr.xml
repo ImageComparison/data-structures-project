@@ -154,6 +154,6 @@
     <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush">
       <RootProperty Name="Color" />
     </RootType>
-    <RootType FullName="UWP_APP.MainPage" />
+    <RootType FullName="ImageComparison.MainPage" />
   </Roots.RootTypes>
 </Roots>

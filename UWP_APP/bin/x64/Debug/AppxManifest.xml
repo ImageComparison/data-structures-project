@@ -10,7 +10,7 @@
   <Identity Name="4f5b5a21-1055-4868-bb60-b6d284fca47a" Publisher="CN=femik" Version="1.0.0.0" ProcessorArchitecture="x64" />
   <mp:PhoneIdentity PhoneProductId="4f5b5a21-1055-4868-bb60-b6d284fca47a" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>UWP_APP</DisplayName>
+    <DisplayName>ImageComparison</DisplayName>
     <PublisherDisplayName>femik</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -25,8 +25,8 @@
     <Resource Language="EN-US" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="UWP_APP.exe" EntryPoint="UWP_APP.App">
-      <uap:VisualElements DisplayName="UWP_APP" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="UWP_APP" BackgroundColor="transparent">
+    <Application Id="App" Executable="UWP_APP.exe" EntryPoint="ImageComparison.App">
+      <uap:VisualElements DisplayName="ImageComparison" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Image Compare Algorithim GUI" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
@@ -46,9 +46,9 @@
   <build:Metadata>
     <build:Item Name="TargetFrameworkMoniker" Value=".NETCore,Version=v5.0" />
     <build:Item Name="VisualStudio" Version="17.0" />
-    <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Enterprise 2022" />
-    <build:Item Name="OperatingSystem" Version="10.0.22000.1 (WinBuild.160101.0800)" />
-    <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="17.0.32113.165" />
+    <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Community 2022" />
+    <build:Item Name="OperatingSystem" Version="10.0.22000.184 (WinBuild.160101.0800)" />
+    <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="17.0.32318.288" />
     <build:Item Name="ProjectGUID" Value="{7D186324-AEC8-4450-A542-EA03F28677D6}" />
     <build:Item Name="OptimizingToolset" Value="None" />
     <build:Item Name="TargetRuntime" Value="Managed" />

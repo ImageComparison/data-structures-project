@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>HAMCOMPUTER</Machine>
-    <WindowsUser>johnh</WindowsUser>
+    <Machine>OKIKI-PC</Machine>
+    <WindowsUser>femik</WindowsUser>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetOsVersion>10.0</TargetOsVersion>
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
@@ -10,7 +10,7 @@
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>4f5b5a21-1055-4868-bb60-b6d284fca47a</PackageIdentityName>
     <PackageIdentityPublisher>CN=femik</PackageIdentityPublisher>
-    <IntermediateOutputPath>D:\Documents\GitHub\data-structures-project\UWP_APP\obj\x64\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\obj\x64\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,8 +18,8 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>004151D69CFC9CC94FE3067578486FE8789A1AEB7CAA9275369C9CECDD8F6633</RegisteredManifestChecksum>
+    <LayoutDir>C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>B21E8B731D5C01B1B96F1923B6AE0AB135C92D5018C6803A1AC749CB9AF3CD79</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>4f5b5a21-1055-4868-bb60-b6d284fca47a_1.0.0.0_x64__mqyfqnzq8pmza</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>4f5b5a21-1055-4868-bb60-b6d284fca47a_mqyfqnzq8pmza!App</RegisteredUserModeAppID>
     <RegisteredPackageID>4f5b5a21-1055-4868-bb60-b6d284fca47a</RegisteredPackageID>
@@ -27,16 +27,36 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-12T21:37:13.487</Modified>
+      <Modified>2022-04-13T06:45:08.118</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\UWP_APP.exe">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\UWP_APP.exe">
       <PackagePath>entrypoint\UWP_APP.exe</PackagePath>
-      <Modified>2022-04-12T21:37:12.660</Modified>
+      <Modified>2022-04-13T06:45:04.161</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\femik\.nuget\packages\numpy\3.7.1.28\lib\netstandard2.0\Numpy.dll">
+      <PackagePath>Numpy.dll</PackagePath>
+      <Modified>2022-01-26T12:21:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\femik\.nuget\packages\numpydotnet\0.9.77\lib\netstandard2.0\NumpyDotNet.dll">
+      <PackagePath>NumpyDotNet.dll</PackagePath>
+      <Modified>2022-04-10T15:59:32.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\femik\.nuget\packages\python.deployment\1.2.0\lib\netstandard2.0\Python.Deployment.dll">
+      <PackagePath>Python.Deployment.dll</PackagePath>
+      <Modified>2020-09-07T17:43:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\femik\.nuget\packages\python.included\3.7.3.13\lib\netstandard2.0\Python.Included.dll">
+      <PackagePath>Python.Included.dll</PackagePath>
+      <Modified>2020-09-16T11:04:16.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\femik\.nuget\packages\pythonnet_netstandard_py37_win\2.5.1\lib\netstandard2.0\Python.Runtime.dll">
+      <PackagePath>Python.Runtime.dll</PackagePath>
+      <Modified>2020-07-31T17:31:54.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.13\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -44,122 +64,122 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\bin\10.0.19041.0\XamlCompiler\Microsoft.UI.Xaml.Markup.winmd">
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
-      <Modified>2020-12-02T08:52:00.000</Modified>
+      <Modified>2020-12-02T09:52:00.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2022-04-09T20:37:07.258</Modified>
+      <Modified>2022-04-10T07:18:48.878</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2022-04-09T20:37:07.133</Modified>
+      <Modified>2022-04-10T07:18:48.865</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-10T14:29:25.047</Modified>
+      <Modified>2022-04-10T07:50:11.340</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-10T14:29:25.065</Modified>
+      <Modified>2022-04-10T07:50:05.302</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-10T14:29:25.308</Modified>
+      <Modified>2022-04-10T07:50:09.620</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-10T14:29:25.393</Modified>
+      <Modified>2022-04-10T07:50:10.124</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-09T20:37:07.190</Modified>
+      <Modified>2022-04-10T07:18:48.866</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-10T14:29:25.426</Modified>
+      <Modified>2022-04-10T07:50:06.106</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\UWP_APP.xr.xml">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\UWP_APP.xr.xml">
       <PackagePath>UWP_APP.xr.xml</PackagePath>
-      <Modified>2022-04-10T14:29:26.573</Modified>
+      <Modified>2022-04-13T00:37:10.739</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-04-12T21:37:12.508</Modified>
+      <Modified>2022-04-13T06:45:03.802</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2022-04-12T21:37:12.508</Modified>
+      <Modified>2022-04-13T06:45:03.801</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\X64\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
-      <Modified>2020-12-02T09:31:00.000</Modified>
+      <Modified>2020-12-02T10:31:00.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
-      <Modified>2020-12-02T06:52:06.000</Modified>
+      <Modified>2020-12-02T07:52:06.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\johnh\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\lib\uap10.0\Microsoft.UI.Xaml.winmd">
+    <AppxPackagedFile Include="C:\Users\femik\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\lib\uap10.0\Microsoft.UI.Xaml.winmd">
       <PackagePath>Microsoft.UI.Xaml.winmd</PackagePath>
       <Modified>2022-03-17T16:43:34.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-04-12T03:02:16.576</Modified>
+      <Modified>2022-04-13T00:49:05.377</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\Core\UWP_APP.exe">
+    <AppxPackagedFile Include="C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\Core\UWP_APP.exe">
       <PackagePath>UWP_APP.exe</PackagePath>
-      <Modified>2022-04-12T21:37:13.477</Modified>
+      <Modified>2022-04-13T06:45:08.077</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
-    <ResolvedSDKReference Include="C:\Users\johnh\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx">
+    <ResolvedSDKReference Include="C:\Users\femik\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx">
       <Name>Microsoft.UI.Xaml.2.7</Name>
       <Version>7.2203.17001.0</Version>
       <Architecture>x86</Architecture>
       <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.7, MinVersion = 7.2203.17001.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\johnh\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
+      <AppxLocation>C:\Users\femik\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\johnh\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx">
+    <ResolvedSDKReference Include="C:\Users\femik\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx">
       <Name>Microsoft.UI.Xaml.2.7</Name>
       <Version>7.2203.17001.0</Version>
       <Architecture>Win32</Architecture>
       <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.7, MinVersion = 7.2203.17001.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\johnh\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
+      <AppxLocation>C:\Users\femik\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\johnh\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx">
+    <ResolvedSDKReference Include="C:\Users\femik\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx">
       <Name>Microsoft.UI.Xaml.2.7</Name>
       <Version>7.2203.17001.0</Version>
       <Architecture>x64</Architecture>
       <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.7, MinVersion = 7.2203.17001.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\johnh\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
+      <AppxLocation>C:\Users\femik\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\johnh\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\arm\Release\Microsoft.UI.Xaml.2.7.appx">
+    <ResolvedSDKReference Include="C:\Users\femik\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\arm\Release\Microsoft.UI.Xaml.2.7.appx">
       <Name>Microsoft.UI.Xaml.2.7</Name>
       <Version>7.2203.17001.0</Version>
       <Architecture>arm</Architecture>
       <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.7, MinVersion = 7.2203.17001.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\johnh\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\arm\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
+      <AppxLocation>C:\Users\femik\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\arm\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\johnh\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\arm64\Release\Microsoft.UI.Xaml.2.7.appx">
+    <ResolvedSDKReference Include="C:\Users\femik\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\arm64\Release\Microsoft.UI.Xaml.2.7.appx">
       <Name>Microsoft.UI.Xaml.2.7</Name>
       <Version>7.2203.17001.0</Version>
       <Architecture>arm64</Architecture>
       <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.7, MinVersion = 7.2203.17001.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\johnh\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\arm64\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
+      <AppxLocation>C:\Users\femik\.nuget\packages\microsoft.ui.xaml\2.7.1\buildTransitive\..\tools\AppX\arm64\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
