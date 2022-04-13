@@ -320,7 +320,7 @@ namespace ImageComparison
             {
                 await Get_Raw_Data(i); //Get raw data for ref img at index i
                 ref_barcodes.Add(QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i])); //generate barcode for said image
-                distances.Add(QueryImage.HammingDistance("", "")); //compare query barcode with ref barcode
+                distances.Add(QueryImage.HammingDistance(query_barcode, ref_barcodes[i])); //compare query barcode with ref barcode
 
                 MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem(); //Add new item to NavigationView list to display file name
                 navitem.Content = ref_names[i] + " (" + distances[i] * 100 + "%)";

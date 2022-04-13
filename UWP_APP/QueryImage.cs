@@ -36,9 +36,9 @@ namespace ImageComparison
          * 
          * `-1`, represents an error in HammingDistance 
          */
-        public static float HammingDistance(String a, String b) { // O(n)
-            var length = a.Length;
-            if (length != b.Length)
+        public static float HammingDistance(List<int> a, List<int> b) { // O(n)
+            var length = a.Count;
+            if (length != b.Count)
                 return -1;
 
             var distance = 0;
