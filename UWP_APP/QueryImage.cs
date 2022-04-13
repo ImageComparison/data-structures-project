@@ -44,7 +44,7 @@ namespace ImageComparison
                     distance++;
             }
 
-            return distance / (float)length;
+            return 1 - distance / (float)length;
         }
 
         /**
