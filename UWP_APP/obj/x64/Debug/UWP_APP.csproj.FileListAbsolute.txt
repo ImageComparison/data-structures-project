@@ -186,3 +186,4 @@ C:\Users\CLX Ra\RiderProjects\data-structures-project\UWP_APP\obj\x64\Debug\Proj
 C:\Users\CLX Ra\RiderProjects\data-structures-project\UWP_APP\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_637424959200000000.json
 C:\Users\CLX Ra\RiderProjects\data-structures-project\UWP_APP\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_637424995200000000.json
 C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\bin\x64\Debug\NumpyDotNet.dll
+D:\Documents\GitHub\data-structures-project\UWP_APP\bin\x64\Debug\NumpyDotNet.dll

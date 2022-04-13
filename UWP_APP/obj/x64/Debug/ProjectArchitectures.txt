@@ -1,1 +1,1 @@
-C:\Users\femik\OneDrive - Ontario Tech University\Year 2\Semester 2\Data Structures\WinUI3-Demo-App\UWP_APP\UWP_APP\UWP_APP.csproj;x64
+D:\Documents\GitHub\data-structures-project\UWP_APP\UWP_APP.csproj;x64

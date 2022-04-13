@@ -50,7 +50,7 @@ namespace ImageComparison
         private List<byte> query_raw_data = new List<byte>();
         private int query_width;
         private int query_height;
-        List<int> query_barcode = new List<int>();
+        List<int> query_barcode;
 
         private int input_select_index = -1;
         private List<string> FAL_tokens = new List<string>(); //tokens for future access list
@@ -338,28 +338,45 @@ namespace ImageComparison
             {
                 WriteableBitmap bitmap = new WriteableBitmap(64, 64); //create WriteableBitmap with correct pix sizes
 
-                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read)) //get byte array from WriteableBitmap
+                try
                 {
-                    BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
-                    bitmap.SetSource(stream);
-
-                    //Scale image
-                    BitmapTransform transform = new BitmapTransform()
+                    IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read);
+                    using (stream) //get byte array from WriteableBitmap
                     {
-                        ScaledWidth = ref_widths[index],
-                        ScaledHeight = ref_heights[index]
-                    };
-
-                    PixelDataProvider pixeldata = await decoder.GetPixelDataAsync(
-                        BitmapPixelFormat.Bgra8,
-                        BitmapAlphaMode.Straight,
-                        transform,
-                        ExifOrientationMode.IgnoreExifOrientation,
-                        ColorManagementMode.DoNotColorManage
-                    );
-
-                    ref_raw_data.Add(pixeldata.DetachPixelData().ToList()); //get raw img data
+                        BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                        bitmap.SetSource(stream);
+                    }
+                    stream.Dispose();
                 }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                
+
+                //using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read)) //get byte array from WriteableBitmap
+                //{
+                //    BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                //    bitmap.SetSource(stream);
+
+                //    //Scale image
+                //    BitmapTransform transform = new BitmapTransform()
+                //    {
+                //        ScaledWidth = ref_widths[index],
+                //        ScaledHeight = ref_heights[index]
+                //    };
+
+                //    PixelDataProvider pixeldata = await decoder.GetPixelDataAsync(
+                //        BitmapPixelFormat.Bgra8,
+                //        BitmapAlphaMode.Straight,
+                //        transform,
+                //        ExifOrientationMode.IgnoreExifOrientation,
+                //        ColorManagementMode.DoNotColorManage
+                //    );
+
+                //    ref_raw_data.Add(pixeldata.DetachPixelData().ToList()); //get raw img data
+                //}
             }
         }
 
@@ -371,11 +388,13 @@ namespace ImageComparison
             {
                 WriteableBitmap bitmap = new WriteableBitmap(64, 64); //create WriteableBitmap with correct pix sizes
 
-                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read)) //get byte array from WriteableBitmap
+                IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read);
+                using (stream) //get byte array from WriteableBitmap
                 {
                     BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
                     bitmap.SetSource(stream);
                 }
+                stream.Dispose();
 
                 img_ref.Source = bitmap; //Update ref image display on ui
                 tb_referenceimage.Text = "Reference Image - " + ref_names[index]; //Update image name display on ui
