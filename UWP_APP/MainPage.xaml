@@ -63,11 +63,11 @@
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItemHeader Content="Reference Images"/>
 
-                <muxc:NavigationViewItem Icon="Target" Content="Image 1"/>
+                <!--<muxc:NavigationViewItem Icon="Target" Content="Image 1"/>
                 <muxc:NavigationViewItem Icon="Target" Content="Image 2"/>
                 <muxc:NavigationViewItem Icon="Target" Content="Image 3"/>
                 <muxc:NavigationViewItem Icon="Target" Content="Image 4"/>
-                <muxc:NavigationViewItem Icon="Target" Content="Image 5"/>
+                <muxc:NavigationViewItem Icon="Target" Content="Image 5"/>-->
             </muxc:NavigationView.MenuItems>
 
             <muxc:NavigationView.PaneFooter>

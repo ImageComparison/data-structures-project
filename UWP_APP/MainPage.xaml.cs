@@ -78,7 +78,9 @@ namespace UWP_APP
 
             //Register a handler for when the window changes focus
             Window.Current.Activated += Current_Activated;
+
         }
+
         private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
             UpdateTitleBarLayout(sender);
@@ -225,7 +227,10 @@ namespace UWP_APP
                     ref_heights.Add(image_height);
 
                     //TODO: Update list on side to include new items
-                    //NavigationViewControl.MenuItems.Add();
+                    MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem();
+                    navitem.Content = file.Name;
+                    navitem.Icon = new SymbolIcon(Symbol.Target);
+                    NavigationViewControl.MenuItems.Add(navitem);
                     //NavigationViewControl.MenuItems.RemoveAt();
                 }
             }
@@ -263,10 +268,11 @@ namespace UWP_APP
         {
             query_barcode = QueryImage.Generate_Barcode(query_raw_data, query_width, query_height);
 
-            ref_barcodes = null;
-            ref_heights = null;
-            ref_widths = null;
-            ref_raw_data = null;
+            ref_barcodes = new List<List<int>>();
+            ref_heights = new List<uint>();
+            ref_widths = new List<uint>();
+            ref_raw_data = new List<List<byte>>();
+            distances = new List<float>();
 
             for (int i = 0; i < ref_names.Count; i++)
             {
