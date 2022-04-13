@@ -13,20 +13,17 @@ namespace ImageComparison
         public QueryImage() { }
 
         /**
-         * Converts a 2D list into a 2D Multidimentional Array (not a Jagged Array, yes there is a difference)
-         * > Note, not used. We switched to multidimentional arrays be defaults, so no more 2D Lists
-         * 
-         * @deprecated
+         * Get the 2D Multidimentional Array Average
          */
-        private static T[,] ListToArray2D<T>(List<List<T>> input) 
+        private static List<int> Array2DAverage(byte[,] input) 
         {
-            var width = input[0].Count();
-            var height = input.Count();
-            T[,] arrays = new T[height, width];
+            var width = input.GetLength(1);
+            var height = input.GetLength(0);
+            List<int> arrays = new List<int>();
 
             for (int i = 0; i < height; i++)
                 for (int j = 0; j < width; j++)
-                    arrays[i, j] = input[i][j];
+                    arrays.Add((int)input[i, j]);
 
             return arrays;
         }
@@ -55,6 +52,8 @@ namespace ImageComparison
          */
         private static List<int> Project_0DEG(byte[,] data) // O(n^2)
         {
+            var average = Array2DAverage(data).Average();
+
             // Get length of row axis
             var size = data.GetLength(0);
             var result = new List<int>();
@@ -66,7 +65,7 @@ namespace ImageComparison
                 result.Add(rowSumData);
             }
 
-            return result;
+            return result.Select(x => x > average ? 1 : 0).ToList();
         }
 
         /**
@@ -75,6 +74,7 @@ namespace ImageComparison
         private static List<int> Project_45DEG(byte[,] arrays) // O(n^2)
         {
             var diags = new List<int>();
+            var average = Array2DAverage(arrays).Average();
 
             var data = np.array(arrays);
 
@@ -97,7 +97,7 @@ namespace ImageComparison
                 diags.Add(sum);
             }
 
-            return diags;
+            return diags.Select(x => x > average ? 1 : 0).ToList();
         }
 
         /**
@@ -105,6 +105,8 @@ namespace ImageComparison
          */
         private static List<int> Project_90DEG(byte[,] data) // O(n^2)
         {
+            var average = Array2DAverage(data).Average();
+
             // Get length of column axis
             var size = data.GetLength(1);
             var result = new List<int>();
@@ -117,7 +119,7 @@ namespace ImageComparison
                 result.Add(colSumData);
             }
 
-            return result;
+            return result.Select(x => x > average ? 1 : 0).ToList();
         }
 
         /**
@@ -126,6 +128,7 @@ namespace ImageComparison
         private static List<int> Project_135DEG(byte[,] arrays) // O(n^2)
         {
             var diags = new List<int>();
+            var average = Array2DAverage(arrays).Average();
 
             var data = np.array(arrays);
 
@@ -149,7 +152,7 @@ namespace ImageComparison
                 diags.Add(sum);
             }
 
-            return diags;
+            return diags.Select(x => x > average ? 1 : 0).ToList();
         }
 
         /**
