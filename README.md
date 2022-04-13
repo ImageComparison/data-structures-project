@@ -1,11 +1,12 @@
 # Data Structures Project (Group 24)
-repos for our SOFE 2715 group project
-- remember to work in your own branch so that changes can be tracked
-- if you want to merge a pull request, just make sure you resolve any conflicts
+Repository for our SOFE 2715 group project
 
-[Project Report Document](https://docs.google.com/document/d/1zSLPa5YUdwerXrFHG5TFrGs3dYmOwx3sfJro5BFAWiw/edit?usp=sharing)
+- [Project Report Document](https://docs.google.com/document/d/1zSLPa5YUdwerXrFHG5TFrGs3dYmOwx3sfJro5BFAWiw/edit?usp=sharing)
+- [Project Report Slideshow](https://docs.google.com/presentation/d/1tw6zD4_-0BbDfXxqoV31a8dApKX4AWhku_c9c1enzqk/edit?usp=sharing)
+- [Most Current Source Code](/UWP_APP)
+- [Source Code Directory](/UWP_APP/README.md)
 
-# Directory
+# Repository Directory
 ## Images  
 Holds the sample images given by the professor as well as some images Alden has used for debugging.
 
@@ -31,9 +32,16 @@ Folder used for getting query images in python script.
 [/queryIMGs](/queryIMGs)
 
 ## UWP
-Version of the project written in .NET framework for UWP. This is probably the most up-to-date version.
+UI prototype made by John for UWP (WinUI2). This directory was quickly abandoned for UWP_APP to seperate the prototype from the current version.
 
 [/UWP](/UWP)
+
+## UWP_APP
+The most up-to-date version of the final project.
+[Source Code Directory](/UWP_APP/README.mnd)
+
+[/UWP_APP](/UWP_APP)
+- [/bin/x64/Debug](/bin/x64/Debug)
 
 ## WinUI
 Version of the project written in .NET framework for WinUI 3. This is the prototype John worked on before the project switched to UWP.
