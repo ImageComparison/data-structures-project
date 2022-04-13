@@ -13,6 +13,7 @@ using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
 using Windows.UI;
 using Windows.UI.ViewManagement;
@@ -160,6 +161,7 @@ namespace UWP_APP
         {
             object navitem_name = args.InvokedItem;
             input_select_index = ref_names.IndexOf(navitem_name.ToString());
+            Set_Ref_Image(input_select_index);
         }
 
         public async void BrowseButton_Click(object sender, RoutedEventArgs e)
@@ -209,6 +211,11 @@ namespace UWP_APP
 
                 img_query.Source = bitmap; //Update query image display on ui
                 tb_queryimage.Text = "Query Image - " + query_name; //Update image name display on ui
+
+                if (ref_names.Count > 0)
+                {
+                    CompareButton.IsEnabled = true;
+                }
             }
         }
 
@@ -239,6 +246,10 @@ namespace UWP_APP
                     navitem.Icon = new SymbolIcon(Symbol.Target);
                     NavigationViewControl.MenuItems.Add(navitem);
                 }
+                if (query_raw_data.Count > 0)
+                {
+                    CompareButton.IsEnabled = true;
+                }
             }
         }
 
@@ -267,7 +278,6 @@ namespace UWP_APP
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Remove items from list and from ref_directories and ref_names
             if (input_select_index != -1)
             {
                 NavigationViewControl.MenuItems.RemoveAt(input_select_index + 1);
@@ -279,6 +289,7 @@ namespace UWP_APP
             if (ref_names.Count == 0)
             {
                 input_select_index = -1;
+                CompareButton.IsEnabled = false;
             }
         }
 
@@ -286,9 +297,10 @@ namespace UWP_APP
         {
             query_barcode = QueryImage.Generate_Barcode(query_raw_data, query_width, query_height);
 
-            ref_barcodes = new List<List<int>>();
-            ref_raw_data = new List<List<byte>>();
-            distances = new List<float>();
+            //reset past results
+            ref_barcodes.Clear();
+            ref_raw_data.Clear();
+            distances.Clear();
 
             for (int i = 0; i < ref_names.Count; i++)
             {
@@ -297,12 +309,14 @@ namespace UWP_APP
                 distances.Add(QueryImage.HammingDistance("", "")); //compare query barcode with ref barcode
             }
 
+            //TODO: Connect ref_barcodes to HammingDistance
+            //TODO: Add output
             //output
         }
 
         private async void Get_Raw_Data(int index)
         {
-            Windows.Storage.StorageFile file = await StorageFile.GetFileFromPathAsync(ref_directories[index]);
+            Windows.Storage.StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(ref_directories[index]));
 
             if (file != null)
             {
@@ -329,6 +343,58 @@ namespace UWP_APP
                     );
 
                     ref_raw_data.Add(pixeldata.DetachPixelData().ToList()); //get raw img data
+                }
+            }
+        }
+
+        private async void Set_Ref_Image(int index)
+        {
+            Windows.Storage.StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("D:\\Documents\\GitHub\\data-structures-project\\images\\profs-images\\0\\img_10039.jpg"));
+
+            if (file != null)
+            {
+                WriteableBitmap bitmap = new WriteableBitmap(64, 64); //create WriteableBitmap with correct pix sizes
+
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read)) //get byte array from WriteableBitmap
+                {
+                    BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                    bitmap.SetSource(stream);
+                }
+
+                img_ref.Source = bitmap; //Update ref image display on ui
+                tb_referenceimage.Text = "Reference Image - " + ref_names[index]; //Update image name display on ui
+            }
+        }
+
+        public string RememberFile(StorageFolder file)
+        {
+            var fal = StorageApplicationPermissions.FutureAccessList;
+            string token = Guid.NewGuid().ToString();
+            fal.AddOrReplace(token, file);
+            return token;
+        }
+        public async Task<StorageFile> GetFileForToken(string token)
+        {
+            var fal = StorageApplicationPermissions.FutureAccessList;
+            if (!fal.ContainsItem(token)) return null;
+            return await fal.GetFileAsync(token);
+        }
+        public async void CleanFAL()
+        {
+            var fal = StorageApplicationPermissions.FutureAccessList;
+            var tokenList = fal.Entries.Select(entry => entry.Token).ToList();
+
+            foreach (var token in tokenList)
+            {
+                try
+                {
+                    //throws if no longer exists
+                    await fal.GetItemAsync(token);
+                }
+                catch (Exception)
+                {
+                    fal.Remove(token);
+                    throw;
                 }
             }
         }

@@ -90,6 +90,7 @@
       <RootProperty Name="Content" />
       <RootProperty Name="Foreground" />
       <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="IsEnabled" />
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ToolTipService">

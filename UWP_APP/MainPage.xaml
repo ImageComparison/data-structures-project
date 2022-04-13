@@ -149,6 +149,7 @@
                                             Click="CompareButton_Click"
                                             Grid.Column="1" 
                                             VerticalAlignment="Center"
+                                            IsEnabled="False"
                                             Style="{ThemeResource AccentButtonStyle}">
                                             Compare
                                         </Button>
