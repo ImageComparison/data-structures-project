@@ -334,11 +334,11 @@ namespace ImageComparison
 
                 MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem(); //Add new item to NavigationView list to display file name
                 navitem.Content = ref_names[i] + " (" + distances[i] * 100 + "%)";
-                nv_output.MenuItems.Add(navitem);
+                nv_output.MenuItems.Add(navitem); 
+                tb_result.Text = "Result - (" + (float)i / ref_names.Count * 100 + "%)";
             }
 
             Save_Barcodes();
-            //TODO: Connect ref_barcodes to HammingDistance
         }
 
         private async Task Get_Raw_Data(int index)
@@ -376,7 +376,7 @@ namespace ImageComparison
 
         private async void Set_Ref_Image(int index)
         {
-            Windows.Storage.StorageFile file = await FALManip.GetFileForToken(FAL_tokens[index]);
+            Windows.Storage.StorageFile file = await FALManip.GetFileForToken(FAL_tokens[index]); //TODO: fix output click
 
             if (file != null)
             {
