@@ -58,6 +58,7 @@
             IsBackButtonVisible="Collapsed" 
             DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
             IsSettingsVisible="False"
+            ItemInvoked="NavigationViewControl_ItemInvoked"
             Canvas.ZIndex="0">
 
             <muxc:NavigationView.MenuItems>

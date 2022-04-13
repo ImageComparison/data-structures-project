@@ -51,6 +51,8 @@ namespace UWP_APP
         private int query_height;
         List<int> query_barcode;
 
+        private int input_select_index = -1;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -154,6 +156,12 @@ namespace UWP_APP
             }
         }
 
+        private void NavigationViewControl_ItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs args)
+        {
+            object navitem_name = args.InvokedItem;
+            input_select_index = ref_names.IndexOf(navitem_name.ToString());
+        }
+
         public async void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
             var picker = new Windows.Storage.Pickers.FileOpenPicker();
@@ -226,12 +234,10 @@ namespace UWP_APP
                     ref_widths.Add(image_width);
                     ref_heights.Add(image_height);
 
-                    //TODO: Update list on side to include new items
-                    MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem();
+                    MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem(); //Add new item to NavigationView list to display file name
                     navitem.Content = file.Name;
                     navitem.Icon = new SymbolIcon(Symbol.Target);
                     NavigationViewControl.MenuItems.Add(navitem);
-                    //NavigationViewControl.MenuItems.RemoveAt();
                 }
             }
         }
@@ -262,6 +268,18 @@ namespace UWP_APP
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO: Remove items from list and from ref_directories and ref_names
+            if (input_select_index != -1)
+            {
+                NavigationViewControl.MenuItems.RemoveAt(input_select_index + 1);
+                ref_names.RemoveAt(input_select_index);
+                ref_directories.RemoveAt(input_select_index);
+                ref_widths.RemoveAt(input_select_index);
+                ref_heights.RemoveAt(input_select_index);
+            }
+            if (ref_names.Count == 0)
+            {
+                input_select_index = -1;
+            }
         }
 
         private void CompareButton_Click(object sender, RoutedEventArgs e)
@@ -269,8 +287,6 @@ namespace UWP_APP
             query_barcode = QueryImage.Generate_Barcode(query_raw_data, query_width, query_height);
 
             ref_barcodes = new List<List<int>>();
-            ref_heights = new List<uint>();
-            ref_widths = new List<uint>();
             ref_raw_data = new List<List<byte>>();
             distances = new List<float>();
 
@@ -316,5 +332,6 @@ namespace UWP_APP
                 }
             }
         }
+
     }
 }

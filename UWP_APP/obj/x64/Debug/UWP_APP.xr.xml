@@ -74,6 +74,7 @@
       <RootProperty Name="IsPaneToggleButtonVisible" />
       <RootProperty Name="PaneDisplayMode" />
       <RootEvent Name="DisplayModeChanged" />
+      <RootEvent Name="ItemInvoked" />
     </RootType>
     <RootType FullName="Microsoft.UI.Xaml.Controls.NavigationViewItemHeader">
       <RootProperty Name="Content" />
