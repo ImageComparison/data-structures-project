@@ -53,6 +53,7 @@ namespace UWP_APP
         List<int> query_barcode;
 
         private int input_select_index = -1;
+        private List<string> FAL_tokens = new List<string>(); //tokens for future access list
 
         public MainPage()
         {
@@ -82,6 +83,8 @@ namespace UWP_APP
             //Register a handler for when the window changes focus
             Window.Current.Activated += Current_Activated;
 
+            //Clear FAL data
+            FALManip.ClearFAL();
         }
 
         private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
@@ -245,6 +248,9 @@ namespace UWP_APP
                     navitem.Content = file.Name;
                     navitem.Icon = new SymbolIcon(Symbol.Target);
                     NavigationViewControl.MenuItems.Add(navitem);
+
+
+                    FAL_tokens.Add(FALManip.RememberFile(file)); //Save file ref in FAL
                 }
                 if (query_raw_data.Count > 0)
                 {
@@ -285,6 +291,7 @@ namespace UWP_APP
                 ref_directories.RemoveAt(input_select_index);
                 ref_widths.RemoveAt(input_select_index);
                 ref_heights.RemoveAt(input_select_index);
+                FALManip.RemoveFileByToken(FAL_tokens[input_select_index]);
             }
             if (ref_names.Count == 0)
             {
@@ -316,7 +323,7 @@ namespace UWP_APP
 
         private async void Get_Raw_Data(int index)
         {
-            Windows.Storage.StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(ref_directories[index]));
+            Windows.Storage.StorageFile file = await FALManip.GetFileForToken(FAL_tokens[index]);
 
             if (file != null)
             {
@@ -349,7 +356,7 @@ namespace UWP_APP
 
         private async void Set_Ref_Image(int index)
         {
-            Windows.Storage.StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("D:\\Documents\\GitHub\\data-structures-project\\images\\profs-images\\0\\img_10039.jpg"));
+            Windows.Storage.StorageFile file = await FALManip.GetFileForToken(FAL_tokens[index]);
 
             if (file != null)
             {
@@ -363,39 +370,6 @@ namespace UWP_APP
 
                 img_ref.Source = bitmap; //Update ref image display on ui
                 tb_referenceimage.Text = "Reference Image - " + ref_names[index]; //Update image name display on ui
-            }
-        }
-
-        public string RememberFile(StorageFolder file)
-        {
-            var fal = StorageApplicationPermissions.FutureAccessList;
-            string token = Guid.NewGuid().ToString();
-            fal.AddOrReplace(token, file);
-            return token;
-        }
-        public async Task<StorageFile> GetFileForToken(string token)
-        {
-            var fal = StorageApplicationPermissions.FutureAccessList;
-            if (!fal.ContainsItem(token)) return null;
-            return await fal.GetFileAsync(token);
-        }
-        public async void CleanFAL()
-        {
-            var fal = StorageApplicationPermissions.FutureAccessList;
-            var tokenList = fal.Entries.Select(entry => entry.Token).ToList();
-
-            foreach (var token in tokenList)
-            {
-                try
-                {
-                    //throws if no longer exists
-                    await fal.GetItemAsync(token);
-                }
-                catch (Exception)
-                {
-                    fal.Remove(token);
-                    throw;
-                }
             }
         }
 
