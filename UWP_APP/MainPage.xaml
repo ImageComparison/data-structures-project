@@ -88,14 +88,14 @@
                         Grid.Row="0"
                         Style="{ThemeResource AccentButtonStyle}">Add Files</Button>
 
-                    <!--<Button 
+                    <Button 
                         Name="AddFolderButton"
                         Click="AddFolderButton_Click"
                         ToolTipService.ToolTip="Add Folder"
                         Margin="5, 0, 5, 5"
                         HorizontalAlignment="Stretch"
                         Grid.Row="1"
-                        Style="{ThemeResource AccentButtonStyle}">Add Folder</Button>-->
+                        Style="{ThemeResource AccentButtonStyle}">Add Folder</Button>
 
                     <Button 
                         Name="RemoveButton"

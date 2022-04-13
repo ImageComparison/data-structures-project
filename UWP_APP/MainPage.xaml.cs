@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
+using Windows.Storage.Search;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.Storage.AccessCache;
@@ -26,7 +28,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using MUXC = Microsoft.UI.Xaml.Controls;
-
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace ImageComparison
@@ -165,8 +166,11 @@ namespace ImageComparison
         private void NavigationViewControl_ItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs args)
         {
             object navitem_name = args.InvokedItem;
-            input_select_index = ref_names.IndexOf(navitem_name.ToString());
-            Set_Ref_Image(input_select_index);
+            if (navitem_name != null)
+            {
+                input_select_index = ref_names.IndexOf(navitem_name.ToString());
+                Set_Ref_Image(input_select_index);
+            }
         }
 
         private void nv_output_ItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs args)
@@ -268,28 +272,43 @@ namespace ImageComparison
             }
         }
 
-        /*
         private async void AddFolderButton_Click(object sender, RoutedEventArgs e)
         {
             var folderPicker = new Windows.Storage.Pickers.FolderPicker();
             folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
-            folderPicker.FileTypeFilter.Add("*");
+            //folderPicker.FileTypeFilter.Add("*");
+            folderPicker.FileTypeFilter.Add(".jpg");
+            folderPicker.FileTypeFilter.Add(".jpeg");
+            folderPicker.FileTypeFilter.Add(".png");
 
             Windows.Storage.StorageFolder folder = await folderPicker.PickSingleFolderAsync();
             if (folder != null)
             {
-                ref_directories.Add(folder.Path);
-                ref_names.Add(folder.Name);
+                var items = await folder.GetFilesAsync(CommonFileQuery.OrderByName);                
+                foreach (var file in items)
+                {
+                    ImageProperties properties = await file.Properties.GetImagePropertiesAsync(); //get image height and width
+                    ref_directories.Add(file.Path); //add file directories to array
+                    ref_names.Add(file.Name); //add file names to array
+                    uint image_width = properties.Width;
+                    uint image_height = properties.Height;
+                    ref_widths.Add(image_width);
+                    ref_heights.Add(image_height);
 
-                //TODO: Update list on side to include new folder
+                    MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem(); //Add new item to NavigationView list to display file name
+                    navitem.Content = file.Name;
+                    navitem.Icon = new SymbolIcon(Symbol.Target);
+                    NavigationViewControl.MenuItems.Add(navitem);
 
-                
-                //Windows.Storage.AccessCache.StorageApplicationPermissions.
-                //FutureAccessList.AddOrReplace("PickedFolderToken", folder);
-                
+
+                    FAL_tokens.Add(FALManip.RememberFile(file)); //Save file ref in FAL
+                }
+                if (query_raw_data.Count > 0)
+                {
+                    CompareButton.IsEnabled = true;
+                }
             }
         }
-        */
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -301,6 +320,15 @@ namespace ImageComparison
                 ref_widths.RemoveAt(input_select_index);
                 ref_heights.RemoveAt(input_select_index);
                 FAL_tokens = FALManip.RemoveFileByToken(FAL_tokens[input_select_index], FAL_tokens); //remove FAL token from FAL and token list
+
+                // Create source.
+                BitmapImage bitmapImage = new BitmapImage();
+                // You don't need to set Height; the system maintains aspect ratio, and calculates the other
+                // dimension, as long as one dimension measurement is provided.
+                bitmapImage.UriSource = new Uri(img_ref.BaseUri, "Assets/SplashScreen.scale-200.png");
+                // BitmapImage.UriSource must be in a BeginInit/EndInit block.
+                // Set the image source.
+                img_ref.Source = bitmapImage;
             }
             if (ref_names.Count == 0)
             {
@@ -337,7 +365,7 @@ namespace ImageComparison
                 nv_output.MenuItems.Add(navitem);
             }
 
-            Save_Barcodes();
+            //Save_Barcodes();
             //TODO: Connect ref_barcodes to HammingDistance
         }
 
