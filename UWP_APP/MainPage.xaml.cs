@@ -167,6 +167,13 @@ namespace ImageComparison
             Set_Ref_Image(input_select_index);
         }
 
+        private void nv_output_ItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs args)
+        {
+            object navitem_name = args.InvokedItem;
+            input_select_index = ref_names.IndexOf(navitem_name.ToString());
+            Set_Ref_Image(input_select_index);
+        }
+
         public async void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
             var picker = new Windows.Storage.Pickers.FileOpenPicker();
@@ -314,11 +321,13 @@ namespace ImageComparison
                 Get_Raw_Data(i); //Get raw data for ref img at index i
                 ref_barcodes.Add(QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i])); //generate barcode for said image
                 distances.Add(QueryImage.HammingDistance("", "")); //compare query barcode with ref barcode
+
+                MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem(); //Add new item to NavigationView list to display file name
+                navitem.Content = ref_names[i] + " (" + distances[i] * 100 + "%)";
+                nv_output.MenuItems.Add(navitem);
             }
 
             //TODO: Connect ref_barcodes to HammingDistance
-            //TODO: Add output
-            //output
         }
 
         private async void Get_Raw_Data(int index)
@@ -372,6 +381,5 @@ namespace ImageComparison
                 tb_referenceimage.Text = "Reference Image - " + ref_names[index]; //Update image name display on ui
             }
         }
-
     }
 }
