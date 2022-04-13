@@ -246,13 +246,14 @@
                             <TextBlock Padding="16, 8, 0, 0" Style="{ThemeResource SubtitleTextBlockStyle}">Result</TextBlock>
 
                             <muxc:NavigationView 
-                                x:Name="nvSample"
+                                x:Name="nv_output"
                                 HorizontalAlignment="Stretch" 
                                 VerticalAlignment="Stretch" 
                                 IsTitleBarAutoPaddingEnabled="False"            
                                 IsBackButtonVisible="Collapsed"
                                 IsPaneToggleButtonVisible="False"
                                 PaneDisplayMode="Left"
+                                ItemInvoked="nv_output_ItemInvoked"
                                 IsSettingsVisible="False">
                                 <muxc:NavigationView.MenuItems>
                                     <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
