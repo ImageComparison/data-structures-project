@@ -116,7 +116,7 @@ jobs:
       env:
         AppxBundle: Never
         BuildMode: SideLoadOnly
-        Configuration: Release
+        Configuration: Debug
         TargetPlatform: ${{ matrix.targetplatform }}
 
 #     # Remove the pfx
