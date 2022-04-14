@@ -1,0 +1,160 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# This workflow will build, test, sign and package a WPF or Windows Forms desktop application
+# built on .NET Core.
+# To learn how to migrate your existing application to .NET Core,
+# refer to https://docs.microsoft.com/en-us/dotnet/desktop-wpf/migration/convert-project-from-net-framework
+#
+# To configure this workflow:
+#
+# 1. Configure environment variables
+# GitHub sets default environment variables for every workflow run.
+# Replace the variables relative to your project in the "env" section below.
+#
+# 2. Signing
+# Generate a signing certificate in the Windows Application
+# Packaging Project or add an existing signing certificate to the project.
+# Next, use PowerShell to encode the .pfx file using Base64 encoding
+# by running the following Powershell script to generate the output string:
+#
+# $pfx_cert = Get-Content '.\SigningCertificate.pfx' -Encoding Byte
+# [System.Convert]::ToBase64String($pfx_cert) | Out-File 'SigningCertificate_Encoded.txt'
+#
+# Open the output file, SigningCertificate_Encoded.txt, and copy the
+# string inside. Then, add the string to the repo as a GitHub secret
+# and name it "Base64_Encoded_Pfx."
+# For more information on how to configure your signing certificate for
+# this workflow, refer to https://github.com/microsoft/github-actions-for-desktop-apps#signing
+#
+# Finally, add the signing certificate password to the repo as a secret and name it "Pfx_Key".
+# See "Build the Windows Application Packaging project" below to see how the secret is used.
+#
+# For more information on GitHub Actions, refer to https://github.com/features/actions
+# For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
+# refer to https://github.com/microsoft/github-actions-for-desktop-apps
+
+name: .NET Core Desktop
+
+on: 
+  push:
+    tags:
+      - '*'
+
+jobs:
+
+  build:
+
+    strategy:            
+      matrix:
+        Configuration: [Release]
+        targetplatform: [x64] # x86, 
+        MsixPackageId: ImageComparison.DevOps.ProdSideload
+        MsixPublisherId: CN=ImageComparisonGithubActions
+        MsixPackageDisplayName: Image Comparison (ProdStore)
+        DistributionUrl: https://microsoft.github.io/github-actions-for-desktop-apps-distribution-prod
+
+    runs-on: windows-latest  # For a list of available runner types, refer to
+                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    env:
+      SigningCertificate: App\UWP\UWP_TemporaryKey.pfx
+      Solution_Path: App\UWP_APP.sln
+      UWP_Project_Path: App\UWP\UWP.csproj
+      UWP_Project_Directory: App\UWP
+      UWP_Packaging_Name: UWP.Package.wapproj
+      
+    steps:      
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+        
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2    
+      
+    # Use Nerdbank.GitVersioning to set version variables: https://github.com/AArnott/nbgv
+    - name: Use Nerdbank.GitVersioning to set version variables
+      uses: aarnott/nbgv@v0.4
+      with:
+        setAllVars: true
+      
+    # Update the appxmanifest before build by setting the per-channel values set in the matrix.
+    - name: Update manifest version
+      run: |
+        [xml]$manifest = get-content ".\$env:UWP_Project_Directory\Package.appxmanifest"
+        $manifest.Package.Identity.Version = "$env:NBGV_SimpleVersion.0"
+        $manifest.Package.Identity.Name = "${{ matrix.MsixPackageId }}"
+        $manifest.Package.Identity.Publisher = "${{ matrix.MsixPublisherId }}"
+        $manifest.Package.Properties.DisplayName = "${{ matrix.MsixPackageDisplayName }}"
+        $manifest.Package.Applications.Application.VisualElements.DisplayName = "${{ matrix.MsixPackageDisplayName }}"
+        $manifest.save(".\$env:UWP_Project_Directory\Package.appxmanifest")
+        
+    # Restore the application
+    - name:  Restore the UWP application to populate the obj folder
+      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
+      env:
+        Configuration: Debug
+        RuntimeIdentifier: win-${{ matrix.targetplatform }}
+        
+    # Build the app package by building and packaging the Windows Application Packaging project
+    - name: Build the Windows Application Packaging Project (wapproj)
+      run: msbuild $env:Solution_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:BuildMode /p:AppxBundle=$env:AppxBundle /p:PackageCertificateKeyFile=$env:SigningCertificate /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+      env:
+        AppxBundle: Never
+        AppInstallerUri: ${{ matrix.DistributionUrl }}
+        BuildMode: SideLoadOnly
+        Configuration: ${{ matrix.Configuration }}
+        GenerateAppInstallerFile: True
+        TargetPlatform: ${{ matrix.targetplatform }}
+        
+#     # Decode the Base64 encoded Pfx
+#     - name: Decode the Pfx
+#       run: |
+#         $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
+#         $currentDirectory = Get-Location
+#         $certificatePath = Join-Path -Path $currentDirectory -ChildPath $env:UWP_Project_Directory -AdditionalChildPath $env:SigningCertificate
+#         [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
+        
+#     # Build the Windows Application Packaging project for Dev and Prod_Sideload
+#     - name: Build the Windows Application Packaging Project (wapproj) for ${{ matrix.ChannelName }}
+#       run: msbuild $env:UWP_Project_Directory/$env:UWP_Packaging_Name /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:BuildMode /p:GenerateAppInstallerFile=$env:GenerateAppInstallerFile /p:AppInstallerUri=$env:AppInstallerUri /p:PackageCertificateKeyFile=$env:SigningCertificate /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+#       if: ${{ matrix.ChannelName }} != Prod_Store
+#       env:
+#         AppInstallerUri: ${{ matrix.DistributionUrl }}
+#         BuildMode: SideLoadOnly
+#         Configuration: ${{ matrix.Configuration }}
+#         GenerateAppInstallerFile: True
+#         TargetPlatform: ${{ matrix.TargetPlatform }}
+        
+    # Create the release:  https://github.com/actions/create-release
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: ${{ github.ref}}.Prod_Sideload.${{ matrix.targetplatform }}
+        release_name:  ${{ github.ref }}.Prod_Sideload.${{ matrix.targetplatform }}
+        draft: false
+        prerelease: false
+        
+    # Upload release asset:   https://github.com/actions/upload-release-asset
+    - name: Update release asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}  # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ${{ env.UWP_Project_Directory }}\AppPackages\AppPackages.zip
+        asset_name: AppPackages.zip
+        asset_content_type: application/zip
