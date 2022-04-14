@@ -26,6 +26,7 @@ Contains most of the projection mapping and hamming distance code for this proje
 [/pythonScripts](/pythonScripts)
 - [/hammingDistance](/pythonScripts/hammingDistance)
 
+
 ## Query Images
 Folder used for getting query images in python script.
 
