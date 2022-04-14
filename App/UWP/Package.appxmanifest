@@ -8,7 +8,7 @@
 
   <Identity
     Name="4f5b5a21-1055-4868-bb60-b6d284fca47a"
-    Publisher="CN=Image Comparison"
+    Publisher="CN=ImageComparison, O=ImageComparison, L=Oshawa, S=N/A, C=Canada"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="4f5b5a21-1055-4868-bb60-b6d284fca47a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
