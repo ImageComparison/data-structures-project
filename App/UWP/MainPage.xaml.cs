@@ -355,48 +355,43 @@ namespace ImageComparison
 
             for (int i = 0; i < ref_names.Count; i++)
             {
-                await Get_Raw_Data(i); //Get raw data for ref img at index i
-                ref_barcodes.Add(QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i])); //generate barcode for said image
+                await Get_Raw_Data(i); // Get raw data for ref img at index i
+                ref_barcodes.Add(QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i])); // generate barcode for said image
 
+                // Compare query barcode with ref barcode
                 var dist = QueryImage.HammingDistance(query_barcode, ref_barcodes[i]);
-                //distances.Add(dist); //compare query barcode with ref barcode//compare query barcode with ref barcode
-                SortedDistances.Add(new float[] { dist, i });
+                SortedDistances.Add(new float[] { i, dist });
+                distances.Add(dist);
 
-                //MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem(); //Add new item to NavigationView list to display file name
-                //navitem.Content = ref_names[i] + " / (" + (distances[i] * 100).ToString("0.0") + "%)";
-                //nv_output.MenuItems.Add(navitem);
-                //tb_result.Text = "Result - (" + (float)i / ref_names.Count * 100 + "%)";
+                string bar_string = "";
+                foreach (byte b in ref_barcodes[i]) 
+                    bar_string += b.ToString();
+
+                bar_strings_temp.Add(bar_string);
+
+                // Result sidebar title
+                tb_result.Text = "Result - (" + ((float)(i + 1) / ref_names.Count * 100).ToString("0") + "%)";
             }
 
-            SortedDistances.Sort(delegate (float[] x, float[] y)
-            {
-                // Reverse the sorted array
-                return x[0].CompareTo(y[0]) * -1;
+            // Sort array using query hamming distance
+            SortedDistances.Sort(delegate (float[] x, float[] y) { 
+                return x[1].CompareTo(y[1]); 
             });
-            ref_barcodes.Clear();
+
+            // Reverse the sorted array
+            SortedDistances.Reverse(); 
 
             for (int j = 0; j < SortedDistances.Count; j++)
             {
                 var sort = SortedDistances[j];
                 var i = (int)sort[0];
 
-                await Get_Raw_Data(i); //Get raw data for ref img at index i
-                ref_barcodes.Add(QueryImage.Generate_Barcode(ref_raw_data[i], (int)ref_widths[i], (int)ref_heights[i])); //generate barcode for said image
-
-                string bar_string = "";
-                foreach (byte b in ref_barcodes[i])
-                {
-                    bar_string += b.ToString();
-                }
-                bar_strings_temp.Add(bar_string);
-
                 var dist = sort[1];
-                distances.Add(dist); //compare query barcode with ref barcode//compare query barcode with ref barcode
 
+                // Add navigation item
                 MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem(); //Add new item to NavigationView list to display file name
-                navitem.Content = ref_names[i] + " / (" + (distances[i] * 100).ToString("0.0") + "%)";
+                navitem.Content = ref_names[i] + " / (" + (dist * 100).ToString("0.0") + "%)";
                 nv_output.MenuItems.Add(navitem);
-                tb_result.Text = "Result - (" + (float)i / ref_names.Count * 100 + "%)";
             }
 
             Save_Barcodes();
