@@ -103,7 +103,7 @@ jobs:
     - name:  Restore the UWP application to populate the obj folder
       run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
       env:
-        Configuration: Debug
+        Configuration: Release
         RuntimeIdentifier: win-${{ matrix.targetplatform }}
         
     # Create the app package by building and packaging the Windows Application Packaging project
@@ -112,7 +112,7 @@ jobs:
       env:
         AppxBundle: Never
         BuildMode: SideLoadOnly
-        Configuration: Debug
+        Configuration: Release
         TargetPlatform: ${{ matrix.targetplatform }}
 
 #     # Remove the pfx
