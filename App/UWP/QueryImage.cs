@@ -47,7 +47,14 @@ namespace ImageComparison
             return distance / (float)length;
         }
 
-        /**
+        public static List<int> GetThresholds(List<int> projection)
+        {
+            var average = projection.Average();
+            average = Math.Round(average);
+            return projection.Select(x => x > average ? 1 : 0).ToList();
+        }
+
+        /*
          * Create a horizontal projection of 2D Lists
          */
         private static List<int> Project_0DEG(byte[,] data) // O(n^2)
@@ -63,9 +70,7 @@ namespace ImageComparison
                 result.Add(rowSumData);
             }
 
-            var average = result.Average();
-            average = Math.Round(average);
-            return result.Select(x => x > average ? 1 : 0).ToList();
+            return GetThresholds(result);
         }
 
         /**
@@ -96,9 +101,7 @@ namespace ImageComparison
                 result.Add(sum);
             }
 
-            var average = result.Average();
-            average = Math.Round(average);
-            return result.Select(x => x > average ? 1 : 0).ToList();
+            return GetThresholds(result);
         }
 
         /**
@@ -118,9 +121,7 @@ namespace ImageComparison
                 result.Add(colSumData);
             }
 
-            var average = result.Average();
-            average = Math.Round(average);
-            return result.Select(x => x > average ? 1 : 0).ToList();
+            return GetThresholds(result);
         }
 
         /**
@@ -152,9 +153,7 @@ namespace ImageComparison
                 result.Add(sum);
             }
 
-            var average = result.Average();
-            average = Math.Round(average);
-            return result.Select(x => x > average ? 1 : 0).ToList();
+            return GetThresholds(result);
         }
 
         /**
