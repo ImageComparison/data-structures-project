@@ -9,7 +9,7 @@
   <Identity
     Name="ImageComparisonMSIX"
     Publisher="CN=ImageComparison, O=ImageComparison, L=Oshawa, S=N/A, C=Canada"
-    Version="1.0.1.0" />
+    Version="1.0.2.0" />
 
   <Properties>
     <DisplayName>Image Comparison App</DisplayName>
