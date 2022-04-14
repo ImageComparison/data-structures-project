@@ -57,6 +57,7 @@ namespace ImageComparison
         private List<string> FAL_tokens = new List<string>(); //tokens for future access list
 
         private List<string> bar_strings_temp = new List<string>();
+        public string AccuracyResultText = "";
 
         public MainPage()
         {
@@ -180,6 +181,8 @@ namespace ImageComparison
             {
                 input_select_index = ref_names.IndexOf(navitem_name.ToString().Split(" / (")[0]); //only uses first part of content as name
                 Set_Ref_Image(input_select_index);
+
+                AccuracyResultText = $"Accuracy Result for '{navitem_name}'";
             }
         }
 
@@ -364,8 +367,8 @@ namespace ImageComparison
                 distances.Add(QueryImage.HammingDistance(query_barcode, ref_barcodes[i])); //compare query barcode with ref barcode//compare query barcode with ref barcode
 
                 MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem(); //Add new item to NavigationView list to display file name
-                navitem.Content = ref_names[i] + " / (" + distances[i] * 100 + "%)";
-                nv_output.MenuItems.Add(navitem); 
+                navitem.Content = ref_names[i] + " / (" + (distances[i] * 100).ToString("0.0") + "%)";
+                nv_output.MenuItems.Add(navitem);
                 tb_result.Text = "Result - (" + (float)i / ref_names.Count * 100 + "%)";
             }
 

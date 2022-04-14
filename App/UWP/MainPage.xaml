@@ -236,39 +236,44 @@
                                             <Button x:Name="BrowseButton" Content="Browse" Foreground="{ThemeResource SystemAccentColor}" Click="BrowseButton_Click" />
                                         </muxc:InfoBar.ActionButton>
                                     </muxc:InfoBar>
+
+                                    <TextBlock Padding="16, 8, 0, 0" Style="{ThemeResource SubtitleTextBlockStyle}" Text="{x:Bind AccuracyResultText}" />
                                 </StackPanel>
+
                             </ScrollViewer>
                         </Border>
 
-                        <StackPanel 
+                        <Grid 
                             Grid.Column="1" 
-                            Margin="16" 
-                            HorizontalAlignment="Stretch" 
-                            VerticalAlignment="Stretch" 
-                            Orientation="Vertical">
-                            <TextBlock Name="tb_result" Padding="16, 8, 0, 0" Style="{ThemeResource SubtitleTextBlockStyle}">Result</TextBlock>
-                            <ScrollViewer>
-                                <muxc:NavigationView 
-                                    x:Name="nv_output"
-                                    OpenPaneLength="255"
-                                    IsTitleBarAutoPaddingEnabled="False"            
-                                    IsBackButtonVisible="Collapsed"
-                                    IsPaneToggleButtonVisible="False"
-                                    PaneDisplayMode="Left"
-                                    ItemInvoked="nv_output_ItemInvoked"
-                                    ScrollViewer.VerticalScrollMode="Auto"
-                                    IsSettingsVisible="False">
-                                    <muxc:NavigationView.MenuItems>
-                                        <!--<muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
-                                        <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
-                                        <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
-                                        <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />-->
-                                    
-                                    </muxc:NavigationView.MenuItems>
-                                </muxc:NavigationView>
-                             </ScrollViewer>
+                            Margin="16 16 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                        </StackPanel>
+                            <TextBlock Grid.Row="0" Name="tb_result" Padding="16, 8, 0, 0" Style="{ThemeResource SubtitleTextBlockStyle}">Result</TextBlock>
+                            <muxc:NavigationView 
+                                x:Name="nv_output"
+                                Grid.Row="1"
+                                OpenPaneLength="365"
+                                IsTitleBarAutoPaddingEnabled="False"            
+                                IsBackButtonVisible="Collapsed"
+                                IsPaneToggleButtonVisible="False"
+                                PaneDisplayMode="Left"
+                                ItemInvoked="nv_output_ItemInvoked"
+                                ScrollViewer.VerticalScrollMode="Auto"
+                                IsSettingsVisible="False">
+                                
+                                <muxc:NavigationView.MenuItems>
+                                    <!--<muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
+                                    <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
+                                    <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
+                                    <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />-->
+
+                                </muxc:NavigationView.MenuItems>
+                            </muxc:NavigationView>
+
+                        </Grid>
                     </Grid>
                 </Frame>
             </Grid>
