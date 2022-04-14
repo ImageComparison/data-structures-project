@@ -36,9 +36,10 @@
 # For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
 # refer to https://github.com/microsoft/github-actions-for-desktop-apps
 
-name: .NET Core Desktop
+name: CI using .NET Core Desktop
 
 on: 
+  workflow_dispatch:
   push:
     tags:
       - '*'
@@ -55,8 +56,8 @@ jobs:
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
     env:
-      SigningCertificate: App\UWP\UWP_TemporaryKey.pfx
-      Solution_Path: App\UWP_APP.sln 
+      SigningCertificate: App\ImageComparisonMSIX\certificate.pfx
+      Solution_Path: App\ImageComparisonMSIX\ImageComparisonMSIX.wapproj
       UWP_Project_Path: App\UWP\UWP.csproj
       UWP_Project_Directory: App\UWP  
       
@@ -77,20 +78,27 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
         
     # Restore the application
-    - name:  Restore the UWP application to populate the obj folder
-      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
-      env:
-        Configuration: Debug
-        RuntimeIdentifier: win-${{ matrix.targetplatform }}
+#     - name: Restore the UWP application to populate the obj folder
+#       run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
+#       env:
+#         Configuration: Debug
+#         RuntimeIdentifier: win-${{ matrix.targetplatform }}
         
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Build the Windows Application Packaging Project (wapproj)
-      run: msbuild $env:Solution_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:BuildMode /p:AppxBundle=$env:AppxBundle /p:PackageCertificateKeyFile=$env:SigningCertificate /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+    
+#       run: msbuild $env:Solution_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:BuildMode  /p:AppxBundle=$env:AppxBundle /p:PackageCertificateKeyFile=$env:SigningCertificate /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+
+      run: msbuild $env:Solution_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:BuildMode /p:AppxPackageOutput=${{ env.UWP_Project_Directory }}\AppPackages\MsixDesktopApp.msix /p:AppxBundle=$env:AppxBundle /p:AppxPackageSigningEnabled=false /p:OutputPath=NonPackagedApp
       env:
         AppxBundle: Never
         BuildMode: SideLoadOnly
-        Configuration: Release
+        Configuration: Debug
         TargetPlatform: ${{ matrix.targetplatform }}
+        
+    - name: Sign MSIX Package
+#       uses: DanaBear/code-sign-action@v4
+      run: '"C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool" sign /fd SHA256 /f ${{ env.SigningCertificate }} /p secret ${{ env.UWP_Project_Directory }}/AppPackages/MsixDesktopApp.msix'
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
