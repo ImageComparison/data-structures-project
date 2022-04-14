@@ -3,8 +3,8 @@ Repository for our SOFE 2715 group project
 
 - [Project Report Document](https://docs.google.com/document/d/1zSLPa5YUdwerXrFHG5TFrGs3dYmOwx3sfJro5BFAWiw/edit?usp=sharing)
 - [Project Report Slideshow](https://docs.google.com/presentation/d/1tw6zD4_-0BbDfXxqoV31a8dApKX4AWhku_c9c1enzqk/edit?usp=sharing)
-- [Most Current Source Code](/UWP_APP)
-- [Source Code Directory](/UWP_APP/README.md)
+- [Most Current Source Code](/App/UWP)
+- [Source Code Directory](/App/UWP/README.md)
 
 # Repository Directory
 ## Images  
@@ -40,8 +40,8 @@ The most up-to-date version of the final project.
 [Source Code Directory](/App/UWP/README.mnd)
 
 [/App](/App)
-- [/ImageComparison.Package](/ImageComparison.Package) - Installable files are located here
-- [/UWP](/bin/x64/Debug)
+- [/ImageComparisonMSIX](/App/ImageComparisonMSIX) - Installable files are located here
+- [/UWP](/App/UWP)
 
 ## WinUI
 Version of the project written in .NET framework for WinUI 3. This is the prototype John worked on before the project switched to UWP.
