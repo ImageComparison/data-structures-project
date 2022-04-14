@@ -52,8 +52,6 @@ namespace ImageComparison
          */
         private static List<int> Project_0DEG(byte[,] data) // O(n^2)
         {
-            var average = Array2DAverage(data).Average();
-
             // Get length of row axis
             var size = data.GetLength(0);
             var result = new List<int>();
@@ -65,6 +63,8 @@ namespace ImageComparison
                 result.Add(rowSumData);
             }
 
+            var average = result.Average();
+            average = Math.Round(average);
             return result.Select(x => x > average ? 1 : 0).ToList();
         }
 
@@ -73,8 +73,7 @@ namespace ImageComparison
          */
         private static List<int> Project_45DEG(byte[,] arrays) // O(n^2)
         {
-            var diags = new List<int>();
-            var average = Array2DAverage(arrays).Average();
+            var result = new List<int>();
 
             var data = np.array(arrays);
 
@@ -94,10 +93,12 @@ namespace ImageComparison
                     .ToList();
 
                 var sum = list.Sum();
-                diags.Add(sum);
+                result.Add(sum);
             }
 
-            return diags.Select(x => x > average ? 1 : 0).ToList();
+            var average = result.Average();
+            average = Math.Round(average);
+            return result.Select(x => x > average ? 1 : 0).ToList();
         }
 
         /**
@@ -105,8 +106,6 @@ namespace ImageComparison
          */
         private static List<int> Project_90DEG(byte[,] data) // O(n^2)
         {
-            var average = Array2DAverage(data).Average();
-
             // Get length of column axis
             var size = data.GetLength(1);
             var result = new List<int>();
@@ -119,6 +118,8 @@ namespace ImageComparison
                 result.Add(colSumData);
             }
 
+            var average = result.Average();
+            average = Math.Round(average);
             return result.Select(x => x > average ? 1 : 0).ToList();
         }
 
@@ -127,8 +128,7 @@ namespace ImageComparison
          */
         private static List<int> Project_135DEG(byte[,] arrays) // O(n^2)
         {
-            var diags = new List<int>();
-            var average = Array2DAverage(arrays).Average();
+            var result = new List<int>();
 
             var data = np.array(arrays);
 
@@ -149,10 +149,12 @@ namespace ImageComparison
                     .ToList();
 
                 var sum = list.Sum();
-                diags.Add(sum);
+                result.Add(sum);
             }
 
-            return diags.Select(x => x > average ? 1 : 0).ToList();
+            var average = result.Average();
+            average = Math.Round(average);
+            return result.Select(x => x > average ? 1 : 0).ToList();
         }
 
         /**

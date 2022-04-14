@@ -246,7 +246,7 @@
                             HorizontalAlignment="Stretch" 
                             VerticalAlignment="Stretch" 
                             Orientation="Vertical">
-                            <TextBlock Padding="16, 8, 0, 0" Style="{ThemeResource SubtitleTextBlockStyle}">Result</TextBlock>
+                            <TextBlock Name="tb_result" Padding="16, 8, 0, 0" Style="{ThemeResource SubtitleTextBlockStyle}">Result</TextBlock>
                             <ScrollViewer>
                                 <muxc:NavigationView 
                                     x:Name="nv_output"

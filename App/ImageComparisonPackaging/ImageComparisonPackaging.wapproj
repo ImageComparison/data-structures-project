@@ -56,6 +56,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <NoWarn>$(NoWarn);NU1702</NoWarn>
+    <EntryPointProjectUniqueName>..\UWP\UWP.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -74,5 +75,8 @@
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UWP\UWP.csproj" />
   </ItemGroup>
 </Project>

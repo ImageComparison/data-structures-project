@@ -176,8 +176,11 @@ namespace ImageComparison
         private void nv_output_ItemInvoked(MUXC.NavigationView sender, MUXC.NavigationViewItemInvokedEventArgs args)
         {
             object navitem_name = args.InvokedItem;
-            input_select_index = ref_names.IndexOf(navitem_name.ToString().Split(" (")[0]); //only uses first part of content as name
-            Set_Ref_Image(input_select_index);
+            if (navitem_name != null)
+            {
+                input_select_index = ref_names.IndexOf(navitem_name.ToString().Split(" / (")[0]); //only uses first part of content as name
+                Set_Ref_Image(input_select_index);
+            }
         }
 
         public async void BrowseButton_Click(object sender, RoutedEventArgs e)
@@ -361,7 +364,7 @@ namespace ImageComparison
                 distances.Add(QueryImage.HammingDistance(query_barcode, ref_barcodes[i])); //compare query barcode with ref barcode//compare query barcode with ref barcode
 
                 MUXC.NavigationViewItem navitem = new MUXC.NavigationViewItem(); //Add new item to NavigationView list to display file name
-                navitem.Content = ref_names[i] + " (" + distances[i] * 100 + "%)";
+                navitem.Content = ref_names[i] + " / (" + distances[i] * 100 + "%)";
                 nv_output.MenuItems.Add(navitem); 
                 tb_result.Text = "Result - (" + (float)i / ref_names.Count * 100 + "%)";
             }
