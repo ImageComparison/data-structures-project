@@ -47,6 +47,9 @@ namespace ImageComparison
             return distance / (float)length;
         }
 
+        /**
+         * Get's the thresholds required for faltening projections to either 0 or 1
+         */
         public static List<int> GetThresholds(List<int> projection)
         {
             var average = projection.Average();
