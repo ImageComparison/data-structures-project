@@ -61,16 +61,27 @@ namespace ImageComparison
         {
             // Get length of row axis
             var size = data.GetLength(0);
-            var result = new List<int>();
+            var first_half = new List<int>();
+            var second_half = new List<int>();
+
             foreach (var row in Enumerable.Range(0, size)) { // O(n)
                 int rowSumData = 0;
                 foreach (var cell in Enumerable.Range(0, size)) // O(n)
                     rowSumData += data[row, cell];
 
-                result.Add(rowSumData);
+                if (row < size/2)
+                {
+                    first_half.Add(rowSumData);
+                }
+                else
+                {
+                    second_half.Add(rowSumData);
+                }
             }
 
-            return GetThresholds(result);
+            List<int> result = GetThresholds(first_half); //returns bits based on generated threshold values
+            result.Concat(GetThresholds(second_half));
+            return result;
         }
 
         /**
@@ -78,7 +89,8 @@ namespace ImageComparison
          */
         private static List<int> Project_45DEG(byte[,] arrays) // O(n^2)
         {
-            var result = new List<int>();
+            var first_half = new List<int>();
+            var second_half = new List<int>();
 
             var data = np.array(arrays);
 
@@ -98,10 +110,20 @@ namespace ImageComparison
                     .ToList();
 
                 var sum = list.Sum();
-                result.Add(sum);
+
+                if (i < start + count / 2)
+                {
+                    first_half.Add(sum);
+                }
+                else
+                {
+                    second_half.Add(sum);
+                }
             }
 
-            return GetThresholds(result);
+            List<int> result = GetThresholds(first_half); //returns bits based on generated threshold values
+            result.Concat(GetThresholds(second_half));
+            return result;
         }
 
         /**
@@ -111,17 +133,28 @@ namespace ImageComparison
         {
             // Get length of column axis
             var size = data.GetLength(1);
-            var result = new List<int>();
+            var first_half = new List<int>();
+            var second_half = new List<int>();
+
             foreach (var col in Enumerable.Range(0, size))
             {
                 int colSumData = 0;
                 foreach (var cell in Enumerable.Range(0, size))
                     colSumData += data[cell,col];
 
-                result.Add(colSumData);
+                if (col < size / 2)
+                {
+                    first_half.Add(colSumData);
+                }
+                else
+                {
+                    second_half.Add(colSumData);
+                }
             }
 
-            return GetThresholds(result);
+            List<int> result = GetThresholds(first_half); //returns bits based on generated threshold values
+            result.Concat(GetThresholds(second_half));
+            return result;
         }
 
         /**
@@ -129,7 +162,8 @@ namespace ImageComparison
          */
         private static List<int> Project_135DEG(byte[,] arrays) // O(n^2)
         {
-            var result = new List<int>();
+            var first_half = new List<int>();
+            var second_half = new List<int>();
 
             var data = np.array(arrays);
 
@@ -150,10 +184,20 @@ namespace ImageComparison
                     .ToList();
 
                 var sum = list.Sum();
-                result.Add(sum);
+
+                if (i < start + count / 2)
+                {
+                    first_half.Add(sum);
+                }
+                else
+                {
+                    second_half.Add(sum);
+                }
             }
 
-            return GetThresholds(result);
+            List<int> result = GetThresholds(first_half); //returns bits based on generated threshold values
+            result.Concat(GetThresholds(second_half));
+            return result;
         }
 
         /**
