@@ -57,15 +57,15 @@ jobs:
       Solution_Path: App\UWP_APP.sln 
       UWP_Project_Path: App\UWP\UWP.csproj
       UWP_Project_Directory: App\UWP  
-      Root_Project_Directory: App
+#       Root_Project_Directory: App
       
     steps:
-    - name: Configure Pagefile
-      uses: al-cheb/configure-pagefile-action@v1.2
-      with:
-        minimum-size: 32GB
-        maximum-size: 32GB
-        disk-root: "C:"
+#     - name: Configure Pagefile
+#       uses: al-cheb/configure-pagefile-action@v1.2
+#       with:
+#         minimum-size: 32GB
+#         maximum-size: 32GB
+#         disk-root: "C:"
         
     - name: Checkout
       uses: actions/checkout@v3
@@ -124,4 +124,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: MSIX Package
-        path: ${{ env.Root_Project_Directory }}\AppPackages
+        path: ${{ env.UWP_Project_Directory }}\AppPackages
