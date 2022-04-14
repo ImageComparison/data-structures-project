@@ -59,6 +59,7 @@
             DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
             IsSettingsVisible="False"
             ItemInvoked="NavigationViewControl_ItemInvoked"
+            ScrollViewer.VerticalScrollMode="Auto"
             Canvas.ZIndex="0">
 
             <muxc:NavigationView.MenuItems>
@@ -88,14 +89,14 @@
                         Grid.Row="0"
                         Style="{ThemeResource AccentButtonStyle}">Add Files</Button>
 
-                    <!--<Button 
+                    <Button 
                         Name="AddFolderButton"
                         Click="AddFolderButton_Click"
                         ToolTipService.ToolTip="Add Folder"
                         Margin="5, 0, 5, 5"
                         HorizontalAlignment="Stretch"
                         Grid.Row="1"
-                        Style="{ThemeResource AccentButtonStyle}">Add Folder</Button>-->
+                        Style="{ThemeResource AccentButtonStyle}">Add Folder</Button>
 
                     <Button 
                         Name="RemoveButton"
@@ -163,6 +164,7 @@
                                         Margin="0, 0, 0, 36">
 
                                         <StackPanel 
+                                            MinWidth="300"
                                             Padding="18, 0, 18, 0"
                                             Orientation="Vertical" 
                                             HorizontalAlignment="Center"
@@ -192,6 +194,7 @@
                                         </StackPanel>
 
                                         <StackPanel 
+                                            MinWidth="300"
                                             Padding="18, 0, 18, 0"
                                             Orientation="Vertical" 
                                             HorizontalAlignment="Center"
@@ -243,26 +246,27 @@
                             HorizontalAlignment="Stretch" 
                             VerticalAlignment="Stretch" 
                             Orientation="Vertical">
-                            <TextBlock Name="tb_result" Padding="16, 8, 0, 0" Style="{ThemeResource SubtitleTextBlockStyle}">Result</TextBlock>
-
-                            <muxc:NavigationView 
-                                x:Name="nv_output"
-                                HorizontalAlignment="Stretch" 
-                                VerticalAlignment="Stretch" 
-                                IsTitleBarAutoPaddingEnabled="False"            
-                                IsBackButtonVisible="Collapsed"
-                                IsPaneToggleButtonVisible="False"
-                                PaneDisplayMode="Left"
-                                ItemInvoked="nv_output_ItemInvoked"
-                                IsSettingsVisible="False">
-                                <muxc:NavigationView.MenuItems>
-                                    <!--<muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
-                                    <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
-                                    <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
-                                    <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />-->
+                            <TextBlock Padding="16, 8, 0, 0" Style="{ThemeResource SubtitleTextBlockStyle}">Result</TextBlock>
+                            <ScrollViewer>
+                                <muxc:NavigationView 
+                                    x:Name="nv_output"
+                                    OpenPaneLength="255"
+                                    IsTitleBarAutoPaddingEnabled="False"            
+                                    IsBackButtonVisible="Collapsed"
+                                    IsPaneToggleButtonVisible="False"
+                                    PaneDisplayMode="Left"
+                                    ItemInvoked="nv_output_ItemInvoked"
+                                    ScrollViewer.VerticalScrollMode="Auto"
+                                    IsSettingsVisible="False">
+                                    <muxc:NavigationView.MenuItems>
+                                        <!--<muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
+                                        <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
+                                        <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />
+                                        <muxc:NavigationViewItem  Content="Output Image 1 (92%)" Tag="Output Image 1 (92%)" />-->
                                     
-                                </muxc:NavigationView.MenuItems>
-                            </muxc:NavigationView>
+                                    </muxc:NavigationView.MenuItems>
+                                </muxc:NavigationView>
+                             </ScrollViewer>
 
                         </StackPanel>
                     </Grid>

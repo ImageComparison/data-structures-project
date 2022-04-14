@@ -31,17 +31,16 @@ Folder used for getting query images in python script.
 
 [/queryIMGs](/queryIMGs)
 
-## UWP
-UI prototype made by John for UWP (WinUI2). This directory was quickly abandoned for UWP_APP to seperate the prototype from the current version.
+## App
+UI prototype made by John for `UWP` (WinUI2) initially. This directory was quickly abandoned for `UWP_APP` to separate the prototype from the current version.
+UWP_APP folder was later renamed to `/App/UWP`.
 
-[/UWP](/UWP)
-
-## UWP_APP
 The most up-to-date version of the final project.
-[Source Code Directory](/UWP_APP/README.mnd)
+[Source Code Directory](/App/UWP/README.mnd)
 
-[/UWP_APP](/UWP_APP)
-- [/bin/x64/Debug](/bin/x64/Debug)
+[/App](/App)
+- [/ImageComparison.Package](/ImageComparison.Package) - Installable files are located here
+- [/UWP](/bin/x64/Debug)
 
 ## WinUI
 Version of the project written in .NET framework for WinUI 3. This is the prototype John worked on before the project switched to UWP.
