@@ -1,0 +1,7 @@
+New-SelfSignedCertificate -Type CodeSigningCert -Subject "CN=ImageComparison, O=ImageComparison, L=Oshawa, S=N/A, C=Canada" -KeyUsage DigitalSignature -FriendlyName ImageComparisonCertificate -CertStoreLocation "Cert:\LocalMachine\My" -TextExtension @('2.5.29.37={text}1.3.6.1.5.5.7.3.3', '2.5.29.19={text}Subject Type:End Entity')
+
+Move-Item Cert:\LocalMachine\My\C5C224179D3AC641AE8353402A26444342E2EB15 -Destination Cert:\LocalMachine\Root
+
+$pwd = ConvertTo-SecureString -String secret -Force -AsPlainText
+
+Export-PfxCertificate -cert "Cert:\LocalMachine\Root\C5C224179D3AC641AE8353402A26444342E2EB15" -FilePath "C:/Users/femik/'OneDrive - Ontario Tech University'/'Year 2'/'Semester 2'/'Data Structures'/WinUI3-Demo-App/UWP_APP/App/UWP/certificate.pfx" -Password $pwd
