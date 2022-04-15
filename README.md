@@ -5,6 +5,7 @@ Repository for our SOFE 2715 group project
 - [Project Report Slideshow](https://docs.google.com/presentation/d/1tw6zD4_-0BbDfXxqoV31a8dApKX4AWhku_c9c1enzqk/edit?usp=sharing)
 - [Most Current Source Code](/App/UWP)
 - [Source Code Directory](/App/UWP/README.md)
+- [Installation Instructions](#install-app)
 
 # Repository Directory
 ## Images  
@@ -32,6 +33,11 @@ Folder used for getting query images in python script.
 
 [/queryIMGs](/queryIMGs)
 
+## WinUI
+Version of the project written in .NET framework for WinUI 3. This is the prototype John worked on before the project switched to UWP.
+
+[/winui](/winui)
+
 ## App
 Initially John Howe ([@johnh-otu](https://github.com/orgs/ImageComparison/people/johnh-otu)) made a UI prototype for `UWP` (using WinUI 2). This directory was quickly abandoned for `UWP_APP` to separate the prototype from the current version. The `UWP_APP` folder was later renamed to `/App/UWP`.
 
@@ -48,7 +54,7 @@ The most up-to-date version of the final project.
 - [/UWP](/App/UWP) - Source files for the UWP app
 - [/UWP_APP.sln](/App/UWP_APP.sln) - Visual Studio Solution file (click this file to open the project)
 
-### Install app
+# Install app
 To install the final project all you need to do is to go to [/App/Publish/](/App/Publish/) and download [/ImageComparisonMSIX_1.0.2.0_x64_Debug_Test](/App/Publish/ImageComparisonMSIX_1.0.2.0_x64_Debug_Test) onto your computer, from thhere go into the downloaded `/App/Publish/` folder, then install the public key certificate for the app, `/App/Publish/ImageComparisonMSIX_1.0.2.0_x64_Debug_Test/ImageComparisonMSIX_1.0.2.0_x64_Debug.cer` (double click the app) after which install the MSIX package `/App/Publish/ImageComparisonMSIX_1.0.2.0_x64_Debug_Test/ImageComparisonMSIX_1.0.2.0_x64_Debug.msix` (double click the msix app).
 
 Step 1:
@@ -100,8 +106,3 @@ Step 11 (Final App Launch 🎉, bon-apettite...):
 > To build the project I highly suggest following this tutorial to install all the tools required. [docs.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment](https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=vs-2022-17-1-a%2Cvs-2022-17-1-b)
 
 Open Visual Studio, go to the `/App/` folder, then click `/UWP_APP.sln` the project should be setup ready for you to go.
-
-## WinUI
-Version of the project written in .NET framework for WinUI 3. This is the prototype John worked on before the project switched to UWP.
-
-[/winui](/winui)
