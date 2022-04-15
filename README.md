@@ -39,8 +39,13 @@ UWP_APP folder was later renamed to `/App/UWP`.
 The most up-to-date version of the final project.
 [Source Code Directory](/App/UWP/README.mnd)
 
+> To build the project I highly suggest following this tutorial to install all the tools required. [docs.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment](https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=vs-2022-17-1-a%2Cvs-2022-17-1-b)
+
 [/App](/App)
-- [/ImageComparisonMSIX](/App/ImageComparisonMSIX) - Installable files are located here
+- [/Publish](/App/Publish) - Installable files are located here, click the 
+  - [/ImageComparisonMSIX_1.0.2.0_x64_Debug_Test](/App/Publish/ImageComparisonMSIX_1.0.2.0_x64_Debug_Test) - Verification Certificate and MSIX files are here. 
+  - > Make sure to install the [certificate](https://github.com/ImageComparison/data-structures-project/blob/main/App/Publish/ImageComparisonMSIX_1.0.2.0_x64_Debug_Test/ImageComparisonMSIX_1.0.2.0_x64_Debug.cer) first, then install the [MSIX package](https://github.com/ImageComparison/data-structures-project/blob/main/App/Publish/ImageComparisonMSIX_1.0.2.0_x64_Debug_Test/ImageComparisonMSIX_1.0.2.0_x64_Debug.msix).
+- [/ImageComparisonMSIX](/App/ImageComparisonMSIX) - MSIX Packager, it packages and encrypts the App using a certificate
 - [/UWP](/App/UWP)
 
 ## WinUI
