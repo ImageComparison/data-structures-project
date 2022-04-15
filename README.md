@@ -33,13 +33,12 @@ Folder used for getting query images in python script.
 [/queryIMGs](/queryIMGs)
 
 ## App
-UI prototype made by John for `UWP` (WinUI2) initially. This directory was quickly abandoned for `UWP_APP` to separate the prototype from the current version.
-UWP_APP folder was later renamed to `/App/UWP`.
+Initially John Howe ([@johnh-otu](https://github.com/orgs/ImageComparison/people/johnh-otu)) made a UI prototype for `UWP` (using WinUI 2). This directory was quickly abandoned for `UWP_APP` to separate the prototype from the current version. The `UWP_APP` folder was later renamed to `/App/UWP`.
 
 The most up-to-date version of the final project.
-[Source Code Directory](/App/UWP/README.mnd)
+[Source Code Directory](/App/UWP/)
 
-> To build the project I highly suggest following this tutorial to install all the tools required. [docs.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment](https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=vs-2022-17-1-a%2Cvs-2022-17-1-b)
+<!-- > To build the project I highly suggest following this tutorial to install all the tools required. [docs.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment](https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=vs-2022-17-1-a%2Cvs-2022-17-1-b) -->
 
 [/App](/App)
 - [/Publish](/App/Publish) - Installable files are located here, click the 
@@ -99,6 +98,8 @@ Step 11 (Final App Launch 🎉, bon-apettite...):
 ### Building app
 
 > To build the project I highly suggest following this tutorial to install all the tools required. [docs.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment](https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=vs-2022-17-1-a%2Cvs-2022-17-1-b)
+
+Open Visual Studio, go to the `/App/` folder, then click `/UWP_APP.sln` the project should be setup ready for you to go.
 
 ## WinUI
 Version of the project written in .NET framework for WinUI 3. This is the prototype John worked on before the project switched to UWP.
